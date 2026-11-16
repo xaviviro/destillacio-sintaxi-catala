@@ -135,8 +135,9 @@ print(json.load(open(ANOT + '.stats.json')))
 code("""
 #@title 4c · Filtre: validació determinista + coincidència amb l'estructura demanada
 from collections import Counter
+anot_tots = [r for f in sorted(glob.glob(f'{BASE}/anotacio_professor*.jsonl')) for r in llegeix(f)]
 motius, bons = Counter(), []
-for r in anot:
+for r in anot_tots:
     a = r['analisi']
     if a is None: motius['JSON no vàlid'] += 1; continue
     ok, m = valida(r['frase'], a)
@@ -144,15 +145,21 @@ for r in anot:
     dem = {k: v for k, v in r['estructura_demanada'].items() if k != 'febles'}
     if estructura(a) != dem: motius["no coincideix amb l'estructura demanada"] += 1; continue
     bons.append({'frase': r['frase'], 'analisi': a, 'estructura': dem})
-print(f'{len(bons)}/{len(anot)} superen el filtre ({100*len(bons)/len(anot):.0f}%)')
+print(f'{len(bons)}/{len(anot_tots)} superen el filtre ({100*len(bons)/len(anot_tots):.0f}%)')
 display(pd.DataFrame(motius.most_common(), columns=['motiu de descart', 'n']))
 
 # Treiem del dataset qualsevol oració de la referència manual
 refs = {norm(f) for f, _ in REFERENCIA}
 bons = [b for b in bons if norm(b['frase']) not in refs]
 random.Random(0).shuffle(bons)
-TEST, TRAIN = bons[:300], bons[300:]
-escriu(f'{BASE}/train.jsonl', TRAIN); escriu(f'{BASE}/test.jsonl', TEST)
+# El test es fixa la primera vegada i es reutilitza: així totes les mides de dataset s'avaluen igual
+if os.path.exists(f'{BASE}/test.jsonl'):
+    TEST = llegeix(f'{BASE}/test.jsonl'); tf = {norm(r['frase']) for r in TEST}
+    TRAIN = [b for b in bons if norm(b['frase']) not in tf]
+else:
+    TEST, TRAIN = bons[:300], bons[300:]
+    escriu(f'{BASE}/test.jsonl', TEST)
+escriu(f'{BASE}/train.jsonl', TRAIN)
 print('train', len(TRAIN), '· test', len(TEST))
 display(pd.Series(Counter(f for b in TRAIN for f in b['estructura']['funcions'])).sort_values(ascending=False).to_frame('ocurrències al train'))
 """)
