@@ -26,9 +26,10 @@ Exemple — Oració: Ahir la Marta va comprar pa al forn.
 {"subjecte": {"text": "la Marta", "nucli": "Marta", "eliptic": false}, "predicat": {"tipus": "verbal", "nucli": "va comprar", "complements": [{"funcio": "CC_TEMPS", "text": "Ahir"}, {"funcio": "CD", "text": "pa"}, {"funcio": "CC_LLOC", "text": "al forn"}]}, "veu": "activa", "impersonal": false}"""
 
 
-def render(tok, frase, thinking=False):
-    msgs = [{"role": "system", "content": SISTEMA},
-            {"role": "user", "content": f"Oració: {frase}"}]
+def render(tok, frase, thinking=False, curt=False):
+    # curt=True: només l'oració, sense instruccions ni exemple (així respon el model destil·lat)
+    msgs = [{"role": "user", "content": frase}] if curt else \
+           [{"role": "system", "content": SISTEMA}, {"role": "user", "content": f"Oració: {frase}"}]
     return tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True,
                                    enable_thinking=thinking)
 

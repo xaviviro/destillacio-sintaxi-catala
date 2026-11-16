@@ -9,6 +9,7 @@ def main():
     ap.add_argument("--inp", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--thinking", type=int, default=0)
+    ap.add_argument("--curt", type=int, default=0)
     ap.add_argument("--max_tokens", type=int, default=768)
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--gpu_mem", type=float, default=0.90)
@@ -20,7 +21,7 @@ def main():
 
     rows = [json.loads(l) for l in open(args.inp, encoding="utf-8")]
     tok = AutoTokenizer.from_pretrained(args.model)
-    prompts = [render(tok, r["frase"], bool(args.thinking)) for r in rows]
+    prompts = [render(tok, r["frase"], bool(args.thinking), bool(args.curt)) for r in rows]
 
     kw = dict(model=args.model, gpu_memory_utilization=args.gpu_mem, max_model_len=args.max_len,
               enable_prefix_caching=True, max_num_seqs=256)
@@ -43,7 +44,8 @@ def main():
             r = dict(r, sortida=txt, analisi=extreu_json(txt), tokens=len(o.outputs[0].token_ids))
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
     stats = {"model": args.model, "n": len(rows), "segons": round(dt, 1), "tokens_generats": ntok,
-             "tokens_per_s": round(ntok / dt, 1), "ms_per_frase": round(1000 * dt / len(rows), 1)}
+             "tokens_per_s": round(ntok / dt, 1), "ms_per_frase": round(1000 * dt / len(rows), 1),
+             "tokens_prompt_mitjana": round(sum(len(o.prompt_token_ids) for o in outs) / len(outs), 1)}
     json.dump(stats, open(args.out + ".stats.json", "w"))
     print(stats)
 

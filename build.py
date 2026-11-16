@@ -169,7 +169,7 @@ res_prof = avalua([r['analisi'] for r in prof_ref], [r['ref'] for r in prof_ref]
 display(pd.DataFrame([res_base, res_prof], index=[f'{ALUMNE} (base)', PROFESSOR]))
 """)
 
-slide(6, "Destil·lació", "Fine-tuning complet de l'alumne amb les anàlisis filtrades del professor", "Destil·lació per seqüència (SFT): l'alumne aprèn a donar la resposta final directament, **sense raonar**. El professor sí que ha raonat per arribar-hi.")
+slide(6, "Destil·lació", "Fine-tuning complet de l'alumne amb les anàlisis filtrades del professor", "Destil·lació per seqüència (SFT): l'alumne aprèn a donar la resposta final directament, **sense raonar**. El professor sí que ha raonat per arribar-hi.\n\nI una cosa més: l'alumne s'entrena **sense prompt**. Només li donem l'oració; les instruccions, el format i l'exemple queden *dins dels pesos*. El model destil·lat respon directament amb el JSON.")
 code("""
 #@title Entrena (o recupera de Drive) l'alumne destil·lat
 MODEL_OUT = f'{BASE}/alumne_destillat'
@@ -180,7 +180,7 @@ if REENTRENAR or not os.path.exists(f'{MODEL_OUT}/config.json'):
     tok = AutoTokenizer.from_pretrained(ALUMNE)
     FI = '<|im_end|>'
     def a_pc(rows):
-        return Dataset.from_list([{'prompt': render(tok, r['frase'], False),
+        return Dataset.from_list([{'prompt': render(tok, r['frase'], False, curt=True),
                                    'completion': json.dumps(r['analisi'], ensure_ascii=False) + FI} for r in rows])
     ds_train, ds_eval = a_pc(TRAIN), a_pc(TEST[:100])
     print(ds_train[0]['prompt'][-200:], ds_train[0]['completion'])
@@ -212,7 +212,7 @@ for nom, model in [('base', ALUMNE), ('destillat', MODEL_OUT)]:
     for conj, path in [('ref', REF_PATH), ('test', TEST_PATH)]:
         out = f'/content/{conj}_alumne_{nom}.jsonl'
         if not os.path.exists(out) or nom == 'destillat':
-            corre(['/content/infer.py', '--model', model, '--inp', path, '--out', out, '--gpu_mem', '0.5'])
+            corre(['/content/infer.py', '--model', model, '--inp', path, '--out', out, '--gpu_mem', '0.5'] + (['--curt', '1'] if nom == 'destillat' else []))
 
 files = {}
 def taula(conj):
@@ -222,7 +222,7 @@ def taula(conj):
                      ([(f'{PROFESSOR} (professor)', REF_PROF)] if conj == 'ref' else []):
         rs = llegeix(path); files[(conj, nom)] = rs
         r = avalua([x['analisi'] for x in rs], [x['ref'] for x in rs], [x['frase'] for x in rs])
-        st = json.load(open(path + '.stats.json')); r['ms/frase'] = st['ms_per_frase']
+        st = json.load(open(path + '.stats.json')); r['ms/frase'] = st['ms_per_frase']; r['tokens de prompt'] = st.get('tokens_prompt_mitjana')
         rows.append(r); idx.append(nom)
     return pd.DataFrame(rows, index=idx)
 
@@ -253,7 +253,7 @@ for f, a in REFERENCIA:
     display(HTML(f"<hr><b>Referència</b>{mostra_html(f, a)}<b>Base</b>{mostra_html(f, base_r[f])}<b>Destil·lat</b>{mostra_html(f, dest_r[f])}"))
 """)
 
-slide(8, "Demo en directe", "Escriu una oració i analitza-la amb el model destil·lat")
+slide(8, "Demo en directe", "Escriu una oració, sense cap instrucció, i el destil·lat respon amb el JSON")
 code("""
 #@title Carrega el model destil·lat
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -266,12 +266,13 @@ except Exception:
     mod_d = AutoModelForImageTextToText.from_pretrained(MODEL_OUT, torch_dtype=torch.bfloat16).cuda().eval()
 
 def analitza(frase):
-    ids = tok_d(render(tok_d, frase, False), return_tensors='pt').to('cuda')
+    ids = tok_d(render(tok_d, frase, False, curt=True), return_tensors='pt').to('cuda')
     t0 = time.time()
     out = mod_d.generate(**ids, max_new_tokens=400, do_sample=False)
     txt = tok_d.decode(out[0, ids['input_ids'].shape[1]:], skip_special_tokens=True)
     a = extreu_json(txt)
     display(HTML(mostra_html(frase, a) + f"<small>{1000*(time.time()-t0):.0f} ms</small>"))
+    print(json.dumps(a, ensure_ascii=False, indent=1) if a else txt)
     return a
 """)
 code("""
