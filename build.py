@@ -133,6 +133,30 @@ anot = llegeix(ANOT)
 print(json.load(open(ANOT + '.stats.json')))
 """)
 code("""
+#@title 4b bis · Ampliació per lots fins a OBJECTIU_FRASES
+OBJECTIU_FRASES = 10000  #@param {type:"integer"}
+def n_frases(): return sum(1 for f in glob.glob(f'{BASE}/frases*.jsonl') for _ in open(f, encoding='utf-8'))
+lot = 1
+while n_frases() < 0.97 * OBJECTIU_FRASES and lot <= 10:
+    F = f'{BASE}/frases_lot{lot}.jsonl'
+    if not os.path.exists(F):
+        falten = OBJECTIU_FRASES - n_frases()
+        corre(['/content/gen_frases.py', '--model', PROFESSOR, '--out', '/content/tmp_lot.jsonl',
+               '--peticions', str(int(falten / 7.5) + 10), '--seed', str(1714 + lot)])
+        vistes = {norm(r['frase']) for f in glob.glob(f'{BASE}/frases*.jsonl') for r in llegeix(f)}
+        escriu(F, [r for r in llegeix('/content/tmp_lot.jsonl') if norm(r['frase']) not in vistes])
+    lot += 1
+print('oracions generades en total:', n_frases())
+# el professor analitza a cegues els lots que encara no tinguin anotació
+for F in sorted(glob.glob(f'{BASE}/frases_lot*.jsonl')):
+    A = F.replace('frases_lot', 'anotacio_professor_lot')
+    if not os.path.exists(A):
+        corre(['/content/infer.py', '--model', PROFESSOR, '--inp', F, '--out', A,
+               '--thinking', str(int(PENSAR_PROFESSOR)), '--max_tokens', '4096' if PENSAR_PROFESSOR else '768',
+               '--temperature', '0.6' if PENSAR_PROFESSOR else '0', '--max_len', '8192'])
+        print(json.load(open(A + '.stats.json')))
+""")
+code("""
 #@title 4c · Filtre: validació determinista + coincidència amb l'estructura demanada
 from collections import Counter
 anot_tots = [r for f in sorted(glob.glob(f'{BASE}/anotacio_professor*.jsonl')) for r in llegeix(f)]
@@ -192,7 +216,7 @@ if REENTRENAR or not os.path.exists(f'{MODEL_OUT}/config.json'):
     ds_train, ds_eval = a_pc(TRAIN), a_pc(TEST[:100])
     print(ds_train[0]['prompt'][-200:], ds_train[0]['completion'])
     cfg = SFTConfig(output_dir='/content/sft', num_train_epochs=3, learning_rate=2e-5, lr_scheduler_type='cosine',
-                    warmup_ratio=0.05, per_device_train_batch_size=16, gradient_accumulation_steps=1,
+                    warmup_steps=20, per_device_train_batch_size=16, gradient_accumulation_steps=1,
                     bf16=True, logging_steps=10, eval_strategy='epoch', save_strategy='no', report_to='none',
                     max_length=1536, completion_only_loss=True, gradient_checkpointing=True,
                     model_init_kwargs={'torch_dtype': torch.bfloat16})
@@ -204,7 +228,8 @@ if REENTRENAR or not os.path.exists(f'{MODEL_OUT}/config.json'):
     import shutil
     orig = snapshot_download(ALUMNE, allow_patterns=['*.json', '*.jinja', '*.txt'])
     for f in os.listdir(orig):
-        if not os.path.exists(f'{MODEL_OUT}/{f}'): shutil.copy(f'{orig}/{f}', MODEL_OUT)
+        if f.endswith(('.json', '.jinja', '.txt')) and 'safetensors' not in f and not os.path.exists(f'{MODEL_OUT}/{f}'):
+            shutil.copy(f'{orig}/{f}', MODEL_OUT)
     pd.DataFrame(trainer.state.log_history).to_csv(f'{BASE}/log_entrenament.csv', index=False)
     del trainer; import gc; gc.collect(); torch.cuda.empty_cache()
 print(sorted(os.listdir(MODEL_OUT)))
