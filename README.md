@@ -1,21 +1,99 @@
 # Destil·lació: d'un Qwen gran a un Qwen petit
 
-Demo per a una xerrada sobre models petits: un **analitzador sintàctic del català** (oració simple → JSON amb subjecte, nucli verbal, CD, CI, atribut, CPRED, CRV, CAG, CC…) destil·lat d'un Qwen gran a un de molt petit, tot a Google Colab.
+Demo per a una xerrada sobre models petits: un **analitzador sintàctic del català** que, donada **només una oració**, respon amb la seva anàlisi escolar en JSON (subjecte, nucli verbal, CD, CI, atribut, CPRED, CRV, CAG, CC…). Destil·lat d'un **Qwen3.8-27B** (professor) a un **Qwen3.5-0.8B** (alumne), tot a Google Colab.
 
-## Flux
+```text
+Entrada:  L'àvia serveix la sopa als néts.
+Sortida:  {"subjecte": {"text": "L'àvia", "nucli": "àvia", "eliptic": false},
+           "predicat": {"tipus": "verbal", "nucli": "serveix",
+                        "complements": [{"funcio": "CD", "text": "la sopa"}, {"funcio": "CI", "text": "als néts"}]},
+           "veu": "activa", "impersonal": false}
+```
 
-1. **El petit sense entrenar** (Qwen3.5-0.8B) sobre 30 oracions anotades a mà → no se'n surt.
-2. **El professor** (Qwen3.8-27B) escriu ~4.000 oracions amb una estructura sintàctica demanada i després les analitza *a cegues*.
-3. **Filtre**: validació determinista (fragments literals, sense solapaments, coherència nominal⇔atribut, CAG⇔passiva…) + coincidència entre l'anàlisi a cegues i l'estructura demanada.
-4. **Destil·lació**: SFT complet de l'alumne amb les anàlisis filtrades (sense raonament).
-5. **Avaluació**: petit base vs destil·lat vs professor, sobre la referència manual i un test de 300 oracions.
+## En una imatge
 
-## A Hugging Face
+![mida vs encert](resultats/mida_vs_encert.png)
 
-| | 4k (3.964 oracions generades → 975 d'entrenament) | 10k |
-|---|---|---|
-| dataset | [xaviviro/sintaxi-catala-destillada-4k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-4k) | [xaviviro/sintaxi-catala-destillada-10k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-10k) *(en preparació)* |
-| model | [xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k) | [xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k) *(en preparació)* |
+El mini destil·lat amb 10k oracions encerta l'anàlisi exacta en el **70 %** de la referència manual, ocupant **0,53 GB en Q4** (el professor, 55,6 GB, en fa el 93 %). Sense destil·lar, el mateix mini en fa el **0 %**.
+
+## Models i datasets (Hugging Face)
+
+| | 4k | 10k | 20k |
+|---|---|---|---|
+| oracions generades → filtrades → train | 3.964 → 1.275 → 975 | 10.421 → 3.485 → 3.182 | *en curs* (20.512 generades) |
+| dataset | [sintaxi-catala-destillada-4k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-4k) | [sintaxi-catala-destillada-10k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-10k) | *en curs* |
+| model bf16 (1,7 GB) | [Qwen3.5-0.8B-sintaxi-catala-4k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k) | [Qwen3.5-0.8B-sintaxi-catala-10k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k) | *en curs* |
+| GGUF Q4_K_M (0,53 GB, LM Studio) | […-4k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k-GGUF) | […-10k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k-GGUF) | *en curs* |
+
+## Comparativa d'efectivitat (mesurada)
+
+**Referència manual — 30 oracions anotades a mà**
+
+![efectivitat referència](resultats/efectivitat_referencia.png)
+
+| model | entrada | anàlisi exacta | F1 complements | F1 funcions | subjecte | nucli verbal | sortida vàlida |
+|---|---|---|---|---|---|---|---|
+| Qwen3.5-0.8B base | prompt complet (~580 tokens) | 0,0 % | 18,9 % | 27,4 % | 53,3 % | 66,7 % | 53,3 % |
+| mini 4k | només l'oració (~23 tokens) | 60,0 % | 77,4 % | 83,0 % | 86,7 % | 90,0 % | 96,7 % |
+| mini 4k · Q4_K_M | només l'oració | 60,0 % | 78,1 % | 83,8 % | 86,7 % | 90,0 % | 93,3 % |
+| **mini 10k** | només l'oració | **70,0 %** | **80,7 %** | **86,2 %** | **93,3 %** | **90,0 %** | **96,7 %** |
+| mini 10k · Q4_K_M | només l'oració | 70,0 % | 80,7 % | 86,2 % | 93,3 % | 90,0 % | 96,7 % |
+| Qwen3.8-27B (professor) | prompt complet + raonament | 93,3 % | 96,4 % | 96,4 % | 100 % | 100 % | 100 % |
+
+Al 10k, les 30 anàlisis del Q4 són **idèntiques** a les del bf16; al 4k ho són 27 de 30 (90 %).
+
+**Test — 300 oracions (etiquetes del professor, filtrades; el mateix test per a totes les mides)**
+
+![efectivitat test](resultats/efectivitat_test.png)
+
+| model | anàlisi exacta | F1 complements | subjecte | nucli verbal |
+|---|---|---|---|---|
+| Qwen3.5-0.8B base | 0,3 % | 10,1 % | 77,3 % | 64,3 % |
+| mini 4k | 86,7 % | 92,4 % | 98,3 % | 96,3 % |
+| mini 10k | 92,3 % | 94,4 % | 99,3 % | 98,0 % |
+
+⚠️ Aquest test mesura **com imita el professor**, no la correcció absoluta. La xifra de qualitat és la de la referència manual.
+
+**Corba de dades**
+
+![corba de dades](resultats/corba_dades.png)
+
+**Verbs incoatius** (10 oracions fora del dataset, avaluades a mà):
+
+| | correctes |
+|---|---|
+| base, prompt complet | 1 / 10 |
+| base, només l'oració | 0 / 10 (no retorna JSON) |
+| mini 4k (bf16 i Q4) | 7 / 10 |
+| mini 10k (bf16 i Q4) | 9 / 10 |
+
+El 10k ja encerta el complement predicatiu («Els avis envelleixen *tranquils* al poble», que el 4k marcava com a CD) i separa «un pont nou» (CD) de «sobre el riu» (CC de lloc). Continua copiant malament «obeeixen» → «oboeixen».
+
+## Mides, memòria i cost
+
+![mides i memòria](resultats/mides_memoria.png)
+
+| | paràmetres | fitxers | memòria |
+|---|---|---|---|
+| Qwen3.8-27B (professor) | 27,8 B | 55,6 GB (bf16) | ≥ 55,6 GB de GPU només per als pesos (no mesurat en execució: vLLM reserva tota la GPU que se li dona) |
+| Qwen3.5-0.8B (base i minis) | 0,85–0,87 B | 1,7 GB (bf16) | **1,78 GB** de GPU de pic (transformers, una oració; sense el context CUDA) |
+| mini Q4_K_M (GGUF) | — | **0,53 GB** | **~0,88 GB** de GPU (llama.cpp, context de 2.048 tokens, inclou el context CUDA) |
+
+![cost per oració](resultats/cost_per_oracio.png)
+
+- **Tokens d'entrada per oració**: ~580 (base i professor, amb instruccions i exemple) → **~23** (mini destil·lat, només l'oració): **−96 %**.
+- **Temps per oració** (lot de 30 amb vLLM, RTX PRO 6000): professor 1.712 ms (raona) · base 21 ms · mini 11 ms. Q4 amb llama.cpp a una L4, d'una en una: ~0,42 s.
+- **Cost de fer el dataset**: el professor analitza cada oració en ~0,68 s (~750 tokens de raonament + resposta, ~1.100 tokens/s). 10.421 oracions ≈ 2 h de GPU.
+
+**No mesurat**: memòria i velocitat a Mac (LM Studio). Les xifres són de GPUs NVIDIA a Colab.
+
+## Com s'ha fet
+
+1. **El petit sense entrenar** (Qwen3.5-0.8B) sobre les 30 oracions de referència → 0 % d'anàlisis exactes.
+2. **El professor** (Qwen3.8-27B, vLLM) escriu oracions amb una **estructura sintàctica demanada** (tipus de subjecte, de predicat, veu i complements) sobre 40 temes, i després les analitza **a cegues**, raonant.
+3. **Filtre**: validació determinista (fragments literals, sense solapaments, nominal ⇔ atribut, CAG ⇒ passiva…) **i** coincidència entre l'anàlisi a cegues i l'estructura demanada. En passa un **32–33 %**; el gros del descart és que l'anàlisi no coincideix amb l'estructura que s'havia demanat.
+4. **Destil·lació**: fine-tuning complet de l'alumne (TRL `SFTTrainer`, 3 èpoques, lr 2e-5), **sense prompt**: només l'oració → el JSON. El raonament del professor no s'hi inclou.
+5. **Avaluació**: referència manual (30) i test fix (300). **Quantització**: GGUF Q4_K_M amb llama.cpp i plantilla de xat que desactiva sempre el raonament.
 
 ## Fitxers
 
@@ -26,31 +104,19 @@ Demo per a una xerrada sobre models petits: un **analitzador sintàctic del cata
 | `infer.py` | inferència per lots amb vLLM (en un procés a part, per alliberar la GPU) |
 | `gen_frases.py` | el professor genera oracions amb estructura demanada |
 | `build.py` | regenera el notebook a partir dels `.py` |
-| `publicar_hf.py` | genera les fitxes (en català, amb gràfics i exemples) i publica datasets i models a Hugging Face |
+| `publicar_hf.py` | fitxes en català (amb gràfics i exemples) i publicació de datasets i models a Hugging Face |
+| `gguf_q4.py` | conversió a GGUF Q4_K_M, validació contra el bf16 i publicació |
+| `grafics_readme.py` + `resultats/resultats.json` | les gràfiques d'aquest README, a partir de les xifres mesurades |
 
-Les dades i el model es desen a Google Drive (`MyDrive/destillacio_sintaxi`) i es reutilitzen si ja hi són.
-
-## Resultats (mesurats, model 4k)
-
-![resultats](resultats_4k.png)
-
-**Referència manual — 30 oracions anotades a mà**
-
-| model | anàlisi exacta | F1 complements | subjecte | nucli verbal | tokens de prompt | ms/frase* |
-|---|---|---|---|---|---|---|
-| Qwen3.5-0.8B base (amb prompt) | 0,0 % | 18,9 % | 53,3 % | 66,7 % | 579 | 21 |
-| **destil·lat 4k (només l'oració)** | **60,0 %** | **77,4 %** | **86,7 %** | **90,0 %** | **23** | **11** |
-| Qwen3.8-27B professor (amb prompt, raonant) | 93,3 % | 96,4 % | 100 % | 100 % | 615 | 1.712 |
-
-**Test — 300 oracions (etiquetes del professor)**: anàlisi exacta 0,3 % (base) → **86,7 %** (destil·lat 4k); F1 complements 10,1 % → **92,4 %**.
-
-\* Temps mitjà per oració en lot amb vLLM (RTX PRO 6000, 96 GB); no és latència d'una crida aïllada.
-
-**Verbs incoatius** (10 oracions fora del dataset): base amb prompt 1/10; base només amb l'oració 0/10 (no torna JSON); destil·lat 4k 7/10 (+1 discutible). Errors: CPRED confós amb CD, i alguna forma verbal mal copiada («obeeixen» → «oboeyen»).
-
-**Filtre**: de 3.964 anàlisis del professor en passen 1.275 (32 %); la majoria de descarts (2.422) són perquè l'anàlisi a cegues no coincideix amb l'estructura demanada.
+Les dades i els models es desen a Google Drive (`MyDrive/destillacio_sintaxi`) i es reutilitzen si ja hi són; l'ampliació del dataset va per lots (`OBJECTIU_FRASES`).
 
 ## Advertiments
 
-- La referència manual (30 oracions) està anotada a mà seguint la gramàtica escolar i **encara no s'ha revisat**: es pot corregir a `common.py`.
-- Al test de 300 oracions les etiquetes són del professor (filtrades): mesura com imita el professor, no la correcció absoluta.
+- La referència manual (30 oracions) està anotada a mà seguint la gramàtica escolar i **encara no s'ha revisat externament**: es pot corregir a `common.py`. Amb 30 oracions, cada oració és un 3,3 %.
+- Els datasets són **sintètics**: el filtre comprova l'estructura, no la qualitat lingüística (hi queden castellanismes i oracions poc naturals).
+- Funcions poc representades (CRV, CC de quantitat): pocs exemples fins i tot al 10k.
+
+## Llicència
+
+Codi: Apache 2.0. Datasets: CC BY 4.0. Models: Apache 2.0 (com el model base).
+Autor: Xavier Vinaixa Roselló ([xaviviro](https://huggingface.co/xaviviro)), Sorensen AI, Barcelona, Catalunya.

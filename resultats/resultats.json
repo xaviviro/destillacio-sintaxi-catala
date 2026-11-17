@@ -1,0 +1,151 @@
+{
+ "_nota": "Totes les xifres són mesurades (Colab: RTX PRO 6000 96 GB per a vLLM; L4 per a llama.cpp i transformers). Referència manual = 30 oracions anotades a mà; test = 300 oracions amb etiquetes del professor filtrades (mateix test per a totes les mides).",
+ "models": {
+  "base": {
+   "nom": "Qwen3.5-0.8B base",
+   "exemples_train": 0,
+   "prompt": "complet",
+   "ref": {
+    "exacte": 0.0,
+    "F1_complements": 18.9,
+    "F1_funcions": 27.4,
+    "subjecte": 53.3,
+    "nucli_verbal": 66.7,
+    "analisi_valida": 53.3
+   },
+   "test": {
+    "exacte": 0.3,
+    "F1_complements": 10.1,
+    "F1_funcions": 17.0,
+    "subjecte": 77.3,
+    "nucli_verbal": 64.3,
+    "analisi_valida": 58.7
+   },
+   "tokens_prompt": 578.5,
+   "ms_frase_vllm_lot": 21.1,
+   "mida_GB": 1.747,
+   "params_M": 873
+  },
+  "4k": {
+   "nom": "mini 4k",
+   "exemples_train": 975,
+   "generades": 3964,
+   "prompt": "només l'oració",
+   "ref": {
+    "exacte": 60.0,
+    "F1_complements": 77.4,
+    "F1_funcions": 83.0,
+    "subjecte": 86.7,
+    "nucli_verbal": 90.0,
+    "analisi_valida": 96.7
+   },
+   "test": {
+    "exacte": 86.7,
+    "F1_complements": 92.4,
+    "F1_funcions": 95.2,
+    "subjecte": 98.3,
+    "nucli_verbal": 96.3,
+    "analisi_valida": 96.0
+   },
+   "tokens_prompt": 22.6,
+   "ms_frase_vllm_lot": 10.9,
+   "mida_GB": 1.706,
+   "params_M": 853
+  },
+  "4k_q4": {
+   "nom": "mini 4k Q4_K_M",
+   "exemples_train": 975,
+   "ref": {
+    "exacte": 60.0,
+    "F1_complements": 78.1,
+    "F1_funcions": 83.8,
+    "subjecte": 86.7,
+    "nucli_verbal": 90.0,
+    "analisi_valida": 93.3
+   },
+   "identic_a_bf16": 90.0,
+   "json_valid": 100.0,
+   "s_frase_llamacpp_L4": 0.416,
+   "mida_GB": 0.535,
+   "gpu_llamacpp_GB": 0.88
+  },
+  "10k": {
+   "nom": "mini 10k",
+   "exemples_train": 3182,
+   "generades": 10421,
+   "prompt": "només l'oració",
+   "ref": {
+    "exacte": 70.0,
+    "F1_complements": 80.7,
+    "F1_funcions": 86.2,
+    "subjecte": 93.3,
+    "nucli_verbal": 90.0,
+    "analisi_valida": 96.7
+   },
+   "test": {
+    "exacte": 92.3,
+    "F1_complements": 94.4,
+    "F1_funcions": 96.6,
+    "subjecte": 99.3,
+    "nucli_verbal": 98.0,
+    "analisi_valida": 98.3
+   },
+   "tokens_prompt": 22.6,
+   "ms_frase_vllm_lot": 11.0,
+   "mida_GB": 1.706,
+   "params_M": 853
+  },
+  "professor": {
+   "nom": "Qwen3.8-27B (professor)",
+   "prompt": "complet + raonament",
+   "ref": {
+    "exacte": 93.3,
+    "F1_complements": 96.4,
+    "F1_funcions": 96.4,
+    "subjecte": 100.0,
+    "nucli_verbal": 100.0,
+    "analisi_valida": 100.0
+   },
+   "tokens_prompt": 614.5,
+   "ms_frase_vllm_lot": 1712.4,
+   "mida_GB": 55.563,
+   "params_M": 27781,
+   "anotacio": {
+    "s_frase": 0.68,
+    "tokens_sortida_frase": 750,
+    "tokens_s": 1100
+   }
+  },
+  "10k_q4": {
+   "nom": "mini 10k Q4_K_M",
+   "exemples_train": 3182,
+   "ref": {
+    "exacte": 70.0,
+    "F1_complements": 80.7,
+    "F1_funcions": 86.2,
+    "subjecte": 93.3,
+    "nucli_verbal": 90.0,
+    "analisi_valida": 96.7
+   },
+   "identic_a_bf16": 100.0,
+   "json_valid": 100.0,
+   "s_frase_llamacpp_L4": 0.426,
+   "mida_GB": 0.535,
+   "gpu_llamacpp_GB": 0.88,
+   "_nota": "les 30 anàlisis del Q4 són idèntiques a les del bf16, per tant les mètriques sobre la referència són les mateixes"
+  }
+ },
+ "memoria": {
+  "mini_bf16_pic_GB_transformers": 1.78,
+  "mini_q4_gpu_GB_llamacpp_ctx2048": 0.88,
+  "professor_pesos_GB": 55.6
+ },
+ "incoatius_correctes_de_10": {
+  "base_prompt_complet": 1,
+  "base_nomes_oracio": 0,
+  "4k": 7,
+  "4k_q4": 7,
+  "10k": 9,
+  "10k_q4": 9
+ }
+}
