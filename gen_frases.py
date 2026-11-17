@@ -10,6 +10,7 @@ def main():
     ap.add_argument("--per", type=int, default=8)
     ap.add_argument("--seed", type=int, default=1714)
     ap.add_argument("--gpu_mem", type=float, default=0.90)
+    ap.add_argument("--reforc", type=int, default=0, help="1 = només estructures febles a l'eval250: CRV, impersonals, pronoms febles, CPRED")
     args = ap.parse_args()
     rng = random.Random(args.seed)
 
@@ -22,7 +23,7 @@ def main():
              "la bicicleta", "una mudança", "un museu", "el carnaval", "la neu", "una excursió escolar"]
 
     NOMS = {"CD": "complement directe (CD)", "CI": "complement indirecte (CI)", "ATRIBUT": "atribut",
-            "CPRED": "complement predicatiu (CPRED)", "CRV": "complement de règim verbal (CRV)",
+            "CPRED": "complement predicatiu (CPRED)", "CRV": "complement de règim verbal (CRV: complement amb la preposició que exigeix el verb, com pensar en, parlar de, confiar en, dependre de, renunciar a, consistir en)",
             "CAG": "complement agent (CAG)", "CC_TEMPS": "complement circumstancial de temps",
             "CC_LLOC": "complement circumstancial de lloc", "CC_MANERA": "complement circumstancial de manera",
             "CC_QUANTITAT": "complement circumstancial de quantitat",
@@ -61,6 +62,25 @@ def main():
         return e
 
 
+    def estructura_reforc():
+        r = rng.random()
+        subj = "explicit" if rng.random() < 0.65 else "eliptic"
+        if r < 0.35:      # complement de règim verbal (pensar en, confiar en, parlar de, dependre de...)
+            e = {"subjecte": subj, "tipus": "verbal", "veu": "activa", "funcions": ["CRV"] + ccs(rng.choice([0, 0, 1]))}
+        elif r < 0.60:    # impersonals (ploure, nevar, fer fred, haver-hi...)
+            nucli = rng.choice([[], ["CD"], ["CD"]])
+            e = {"subjecte": "impersonal", "tipus": "verbal", "veu": "activa", "funcions": nucli + ccs(rng.choice([1, 1, 2]))}
+        elif r < 0.90:    # pronoms febles
+            nucli = rng.choice([["CD"], ["CD"], ["CI"], ["CD", "CI"], ["CD", "CI"]])
+            e = {"subjecte": subj, "tipus": "verbal", "veu": "activa", "funcions": nucli + ccs(rng.choice([0, 1, 1]))}
+        else:             # complement predicatiu
+            nucli = rng.choice([["CPRED"], ["CD", "CPRED"]])
+            e = {"subjecte": subj, "tipus": "verbal", "veu": "activa", "funcions": nucli + ccs(rng.choice([0, 1]))}
+        e["funcions"] = sorted(set(e["funcions"]))
+        e["febles"] = 0.60 <= r < 0.90
+        return e
+
+
     def descriu(e):
         l = {"explicit": "- subjecte explícit", "eliptic": "- subjecte el·líptic (omès, no aparegui a l'oració)",
              "impersonal": "- oració impersonal, sense subjecte (verbs com ploure, nevar, fer fred, haver-hi...)"}[e["subjecte"]]
@@ -88,7 +108,7 @@ Respon només amb una llista JSON de {per} cadenes."""
     tok = AutoTokenizer.from_pretrained(args.model)
     peticions = []
     for _ in range(args.peticions):
-        e = estructura_aleatoria()
+        e = estructura_reforc() if args.reforc else estructura_aleatoria()
         tema = rng.choice(TEMES)
         msg = [{"role": "user", "content": PLANTILLA.format(per=args.per, tema=tema, desc=descriu(e))}]
         peticions.append((e, tema, tok.apply_chat_template(msg, tokenize=False, add_generation_prompt=True, enable_thinking=False)))

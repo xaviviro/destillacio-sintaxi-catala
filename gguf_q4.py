@@ -14,8 +14,9 @@ def sh(cmd, **kw):
 def prepara_llama():
     if not os.path.exists(f"{LLAMA}/build/bin/llama-quantize"):
         sh(f"git clone --depth 1 https://github.com/ggml-org/llama.cpp {LLAMA}")
-        sh(f"pip install -q -r {LLAMA}/requirements/requirements-convert_hf_to_gguf.txt")
-        sh("pip install -q -U transformers")  # els requirements de llama.cpp el rebaixen i no coneix Qwen3_5Tokenizer
+        # No instal·lem requirements-convert_hf_to_gguf.txt: rebaixa torch a una versió només CPU (i transformers)
+        # i deixa vLLM sense GPU. El convertidor només necessita gguf-py, sentencepiece i protobuf.
+        sh(f"pip install -q -e {LLAMA}/gguf-py sentencepiece protobuf")
         sh(f"cmake -S {LLAMA} -B {LLAMA}/build -DGGML_CUDA=ON -DLLAMA_CURL=OFF -DCMAKE_BUILD_TYPE=Release")
         sh(f"cmake --build {LLAMA}/build --target llama-quantize llama-server -j 8")
 
