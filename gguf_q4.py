@@ -55,7 +55,7 @@ def extreu(t):
 def valida_q4(q4, referencia_bf16, frases_extra=()):
     """Compara les sortides del GGUF Q4 amb les del model bf16 (vLLM) a les mateixes oracions."""
     srv = subprocess.Popen(f"{LLAMA}/build/bin/llama-server -m {q4} -ngl 99 --port 8089 -c 2048 --jinja",
-                           shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                           shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
     for _ in range(120):
         try:
             urllib.request.urlopen("http://127.0.0.1:8089/health", timeout=1); break
@@ -76,7 +76,8 @@ def valida_q4(q4, referencia_bf16, frases_extra=()):
         dt = (time.time() - t0) / len(refs)
         extra = [(f, extreu(crida(f))) for f in frases_extra]
     finally:
-        srv.terminate()
+        import signal
+        os.killpg(os.getpgid(srv.pid), signal.SIGTERM)  # el shell i el llama-server
     return {"n": len(refs), "json_valid": 100 * valids / len(refs), "identic_a_bf16": 100 * iguals / len(refs),
             "s_per_frase": dt}, mostres, extra
 
