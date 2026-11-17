@@ -26,6 +26,8 @@ El mini destil·lat amb 20k oracions encerta l'anàlisi exacta en el **73 %** de
 | GGUF Q4_K_M (0,53 GB, LM Studio) | […-4k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k-GGUF) | […-10k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k-GGUF) | […-20k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-GGUF) |
 | test independent (250 a mà) | [sintaxi-catala-eval250](https://huggingface.co/datasets/xaviviro/sintaxi-catala-eval250) · per a les tres mides | | |
 
+**20k + reforç** (el millor mini, vegeu «Segona ronda» més avall): [dataset](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc) · [model bf16](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc) · [GGUF Q4_K_M per a LM Studio](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-GGUF).
+
 ## Comparativa d'efectivitat (mesurada)
 
 **Referència manual — 30 oracions anotades a mà**
@@ -88,34 +90,53 @@ Cobreix 11 tipus d'oració. Dataset: [xaviviro/sintaxi-catala-eval250](https://h
 | mini 4k | **62.0** | 74.9 | 80.2 | 90.8 | 88.8 | 99.2 | 100.0 | 3.9 |
 | mini 10k | **69.2** | 80.5 | 84.1 | 94.4 | 93.6 | 98.4 | 100.0 | 4.0 |
 | mini 20k | **73.2** | 83.8 | 86.2 | 93.6 | 93.6 | 98.4 | 99.6 | 4.0 |
+| mini 20k + reforç | **80.8** | 87.4 | 90.1 | 97.2 | 97.2 | 99.2 | 100.0 | 3.9 |
 | professor Qwen3.8-27B | **91.2** | 95.2 | 95.5 | 98.8 | 98.0 | 99.6 | 99.6 | 881.1 |
 
 ![eval250 per grups](resultats/eval250_grups.png)
 
 Anàlisi exacta (%) per tipus d'oració:
 
-| tipus d'oració (n) | mini base (sense destil·lar) | mini 4k | mini 10k | mini 20k | professor Qwen3.8-27B |
-|---|---|---|---|---|---|
-| CD (30) | 0 | 93 | 90 | 90 | 100 |
-| CD+CI (20) | 0 | 85 | 100 | 85 | 100 |
-| pronoms febles (15) | 0 | 33 | 40 | 60 | 93 |
-| predicat nominal (25) | 0 | 84 | 80 | 96 | 88 |
-| veu passiva (20) | 0 | 100 | 95 | 85 | 95 |
-| impersonal (15) | 0 | 0 | 47 | 47 | 80 |
-| CPRED (15) | 0 | 47 | 47 | 53 | 67 |
-| CRV (15) | 0 | 0 | 7 | 7 | 73 |
-| CC (50) | 0 | 46 | 68 | 74 | 94 |
-| verbs incoatius (25) | 4 | 80 | 68 | 72 | 96 |
-| subjecte el·líptic (20) | 0 | 70 | 75 | 90 | 95 |
+| tipus d'oració (n) | mini base (sense destil·lar) | mini 4k | mini 10k | mini 20k | mini 20k + reforç | professor Qwen3.8-27B |
+|---|---|---|---|---|---|---|
+| CD (30) | 0 | 93 | 90 | 90 | 100 | 100 |
+| CD+CI (20) | 0 | 85 | 100 | 85 | 85 | 100 |
+| pronoms febles (15) | 0 | 33 | 40 | 60 | 60 | 93 |
+| predicat nominal (25) | 0 | 84 | 80 | 96 | 88 | 88 |
+| veu passiva (20) | 0 | 100 | 95 | 85 | 95 | 95 |
+| impersonal (15) | 0 | 0 | 47 | 47 | 60 | 80 |
+| CPRED (15) | 0 | 47 | 47 | 53 | 60 | 67 |
+| CRV (15) | 0 | 0 | 7 | 7 | 80 | 73 |
+| CC (50) | 0 | 46 | 68 | 74 | 78 | 94 |
+| verbs incoatius (25) | 4 | 80 | 68 | 72 | 80 | 96 |
+| subjecte el·líptic (20) | 0 | 70 | 75 | 90 | 80 | 95 |
 
 Què s'hi veu (mesurat):
-- Mateixa ordenació que a la referència manual: base 0,4 % → 4k 62 % → 10k 69 % → 20k 73 % → professor 91 %. Els resultats de la referència de 30 (60 / 70 / 73 / 93) es mantenen amb un test 8 vegades més gran.
+- Mateixa ordenació que a la referència manual: base 0,4 % → 4k 62 % → 10k 69 % → 20k 73 % → (20k + reforç 81 %) → professor 91 %. Els resultats de la referència de 30 (60 / 70 / 73 / 93) es mantenen amb un test 8 vegades més gran.
 - **CRV**: el mini falla gairebé sempre (0–7 %). El confon amb un CC de lloc («pensa *en el seu avi*» → CC_LLOC). El professor l'encerta en el 73 %. Al train de 20k només hi ha 8 CRV.
 - **Impersonals** (47 % al 10k i al 20k, 0 % al 4k) i **pronoms febles** (33 → 60 %) són els altres punts febles; el professor hi arriba al 80 % i al 93 %.
 - CD, CD+CI, passiva i predicat nominal: ≥ 85 % al 20k.
 
-Hipòtesi (no comprovada): afegir més oracions amb CRV, impersonals i pronoms febles al dataset milloraria aquests grups més que no pas afegir-ne de genèriques.
-Cada grup té entre 15 i 50 oracions: una oració de 15 són 6,7 punts.
+### Segona ronda: reforç dirigit als punts febles (mesurat)
+
+Per comprovar si el que faltava eren exemples dels grups febles, el professor va escriure 4.757 oracions noves centrades en CRV (35 %), impersonals (25 %),
+pronoms febles (30 %) i CPRED (10 %), amb una pista sobre què és un CRV. Les va analitzar a cegues i va passar el mateix filtre: en van quedar **1.033**,
+340 amb CRV (al 20k n'hi havia 8). Es va tornar a entrenar el mini des del model base amb el 20k + reforç (7.682 exemples) i la mateixa configuració.
+
+| | eval250 | CRV | impersonals | pronoms febles | referència manual (30) | test (300) |
+|---|---|---|---|---|---|---|
+| mini 20k | 73,2 | 6,7 | 46,7 | 60,0 | 73,3 | 92,3 |
+| **mini 20k + reforç** | **80,8** | **80,0** | 60,0 | 60,0 | **83,3** | 93,0 |
+
+- El CRV passa de 7 a 80 %: amb exemples, el model petit l'aprèn.
+- També millora la referència manual de 30, que no es va fer servir per decidir el reforç.
+- Els pronoms febles no milloren (60 %), i el predicat nominal i el subjecte el·líptic baixen 2 oracions cadascun.
+- Avís: el reforç es va dirigir als grups on fallava l'eval250. Cap oració de l'eval250 no s'ha fet servir, però en aquests grups l'eval250 ja no és una mesura del tot independent.
+
+Model: [Qwen3.5-0.8B-sintaxi-catala-20k-reforc](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc) ·
+GGUF: [...-20k-reforc-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-GGUF) ·
+dataset: [sintaxi-catala-destillada-20k-reforc](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc).
+Codi: `gen_frases.py --reforc 1`, `reforc.py`, `reforc_train_cell.py`, `publica_reforc.py`.
 
 ## Mides, memòria i cost
 

@@ -8,8 +8,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 NOMS = [("base", "mini base\n(sense destil·lar)"), ("4k", "mini 4k"), ("10k", "mini 10k"),
-        ("20k", "mini 20k"), ("professor", "professor\nQwen3.8-27B")]
-COLS = {"base": "#E45756", "4k": "#F58518", "10k": "#54A24B", "20k": "#4C78A8", "professor": "#B279A2"}
+        ("20k", "mini 20k"),
+        ("20k_reforc", "mini 20k\n+ reforç"), ("professor", "professor\nQwen3.8-27B")]
+COLS = {"base": "#E45756", "4k": "#F58518", "10k": "#54A24B", "20k": "#4C78A8", "20k_reforc": "#72B7B2", "professor": "#B279A2"}
 METS = [("exacte", "anàlisi\nexacta"), ("F1_complements", "F1\ncomplements"), ("subjecte", "subjecte"),
         ("nucli_verbal", "nucli\nverbal"), ("tipus_i_veu", "tipus\ni veu")]
 

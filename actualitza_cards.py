@@ -7,7 +7,7 @@ USUARI = "xaviviro"
 EVAL_REPO = f"{USUARI}/sintaxi-catala-eval250"
 GH = "https://github.com/xaviviro/destillacio-sintaxi-catala"
 IMG = f"https://huggingface.co/datasets/{EVAL_REPO}/resolve/main/grafics"
-MIDES = ["4k", "10k", "20k"]
+MIDES = ["4k", "10k", "20k", "20k-reforc"]
 
 
 def cita(ident, titol):
@@ -32,13 +32,13 @@ TITOLS = {
     "eval": ("sintaxieval250", "sintaxi-catala-eval250: 250 oracions catalanes anotades a mà per avaluar l'anàlisi sintàctica"),
 }
 for m in MIDES:
-    TITOLS[f"dataset_{m}"] = (f"sintaxidataset{m}", f"sintaxi-catala-destillada-{m}: anàlisis sintàctiques del català destil·lades de Qwen3.8-27B")
-    TITOLS[f"model_{m}"] = (f"sintaximodel{m}", f"Qwen3.5-0.8B-sintaxi-catala-{m}: analitzador sintàctic del català destil·lat")
-    TITOLS[f"gguf_{m}"] = (f"sintaxigguf{m}", f"Qwen3.5-0.8B-sintaxi-catala-{m}-GGUF: analitzador sintàctic del català quantitzat a 4 bits")
+    TITOLS[f"dataset_{m}"] = (f"sintaxidataset{m.replace('-', '')}", f"sintaxi-catala-destillada-{m}: anàlisis sintàctiques del català destil·lades de Qwen3.8-27B")
+    TITOLS[f"model_{m}"] = (f"sintaximodel{m.replace('-', '')}", f"Qwen3.5-0.8B-sintaxi-catala-{m}: analitzador sintàctic del català destil·lat")
+    TITOLS[f"gguf_{m}"] = (f"sintaxigguf{m.replace('-', '')}", f"Qwen3.5-0.8B-sintaxi-catala-{m}-GGUF: analitzador sintàctic del català quantitzat a 4 bits")
 
 
 def seccio_eval(res, mida=None):
-    dest = f" El model d'aquesta fitxa és el **mini {mida}**." if mida else ""
+    dest = f" El model d'aquesta fitxa és el **mini {mida.replace('-reforc', ' + reforç')}**." if mida else ""
     return f"""## Avaluació independent — eval250 (mesurada)
 
 Test nou de **250 oracions escrites i anotades a mà**, separat de tot el procés de destil·lació: cap oració no l'ha generada el professor i
@@ -55,7 +55,7 @@ Anàlisi exacta (%) per tipus d'oració:
 
 ![eval250 per grups]({IMG}/eval250_grups.png)
 
-*Mini destil·lats amb el prompt curt (només l'oració); mini base amb el prompt complet; professor amb raonament (thinking), temperatura 0,6.
+*«Mini 20k + reforç» = el 20k més 1.033 oracions de reforç dirigides a CRV, impersonals, pronoms febles i CPRED, generades i filtrades igual que la resta. Cap oració de l'eval250 no s'ha fet servir per entrenar, però el reforç es va dirigir als grups on l'eval250 fallava: en aquests grups la millora no és una mesura del tot independent. Mini destil·lats amb el prompt curt (només l'oració); mini base amb el prompt complet; professor amb raonament (thinking), temperatura 0,6.
 Una anàlisi és exacta si coincideixen subjecte, nucli verbal, tipus de predicat, veu i el conjunt de complements (funció + text).*
 """
 

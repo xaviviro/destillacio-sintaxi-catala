@@ -243,6 +243,66 @@
   "ms_per_frase": 4.0,
   "tokens_prompt_mitjana": 22.1
  },
+ "20k_reforc": {
+  "global": {
+   "exacte": 80.8,
+   "F1_complements": 87.4,
+   "F1_funcions": 90.1,
+   "subjecte": 97.2,
+   "nucli_verbal": 97.2,
+   "tipus_i_veu": 99.2,
+   "json_valid": 100.0,
+   "n": 250
+  },
+  "grups": {
+   "CD": {
+    "exacte": 100.0,
+    "n": 30
+   },
+   "CD+CI": {
+    "exacte": 85.0,
+    "n": 20
+   },
+   "pronoms febles": {
+    "exacte": 60.0,
+    "n": 15
+   },
+   "predicat nominal": {
+    "exacte": 88.0,
+    "n": 25
+   },
+   "veu passiva": {
+    "exacte": 95.0,
+    "n": 20
+   },
+   "impersonal": {
+    "exacte": 60.0,
+    "n": 15
+   },
+   "CPRED": {
+    "exacte": 60.0,
+    "n": 15
+   },
+   "CRV": {
+    "exacte": 80.0,
+    "n": 15
+   },
+   "CC": {
+    "exacte": 78.0,
+    "n": 50
+   },
+   "verbs incoatius": {
+    "exacte": 80.0,
+    "n": 25
+   },
+   "subjecte el·líptic": {
+    "exacte": 80.0,
+    "n": 20
+   }
+  },
+  "ms_per_frase": 3.9,
+  "tokens_prompt_mitjana": 22.1
+ },
  "professor": {
   "global": {
    "json_valid": 99.6,
