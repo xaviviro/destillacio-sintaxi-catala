@@ -198,5 +198,312 @@
   "10k_q4": 9,
   "20k": 8,
   "20k_q4": 8
+ },
+ "eval250": {
+  "base": {
+   "global": {
+    "json_valid": 100.0,
+    "analisi_valida": 55.6,
+    "subjecte": 62.0,
+    "nucli_verbal": 67.2,
+    "tipus_i_veu": 81.2,
+    "exacte": 0.4,
+    "F1_complements": 12.7,
+    "F1_funcions": 20.6,
+    "n": 250
+   },
+   "grups": {
+    "CD": {
+     "exacte": 0,
+     "n": 30
+    },
+    "CD+CI": {
+     "exacte": 0,
+     "n": 20
+    },
+    "pronoms febles": {
+     "exacte": 0,
+     "n": 15
+    },
+    "predicat nominal": {
+     "exacte": 0,
+     "n": 25
+    },
+    "veu passiva": {
+     "exacte": 0,
+     "n": 20
+    },
+    "impersonal": {
+     "exacte": 0,
+     "n": 15
+    },
+    "CPRED": {
+     "exacte": 0,
+     "n": 15
+    },
+    "CRV": {
+     "exacte": 0,
+     "n": 15
+    },
+    "CC": {
+     "exacte": 0,
+     "n": 50
+    },
+    "verbs incoatius": {
+     "exacte": 4.0,
+     "n": 25
+    },
+    "subjecte el·líptic": {
+     "exacte": 0,
+     "n": 20
+    }
+   },
+   "ms_per_frase": 8.8,
+   "tokens_prompt_mitjana": 577.9
+  },
+  "4k": {
+   "global": {
+    "json_valid": 100.0,
+    "analisi_valida": 92.4,
+    "subjecte": 90.8,
+    "nucli_verbal": 88.8,
+    "tipus_i_veu": 99.2,
+    "exacte": 62.0,
+    "F1_complements": 74.9,
+    "F1_funcions": 80.2,
+    "n": 250
+   },
+   "grups": {
+    "CD": {
+     "exacte": 93.3,
+     "n": 30
+    },
+    "CD+CI": {
+     "exacte": 85.0,
+     "n": 20
+    },
+    "pronoms febles": {
+     "exacte": 33.3,
+     "n": 15
+    },
+    "predicat nominal": {
+     "exacte": 84.0,
+     "n": 25
+    },
+    "veu passiva": {
+     "exacte": 100.0,
+     "n": 20
+    },
+    "impersonal": {
+     "exacte": 0.0,
+     "n": 15
+    },
+    "CPRED": {
+     "exacte": 46.7,
+     "n": 15
+    },
+    "CRV": {
+     "exacte": 0.0,
+     "n": 15
+    },
+    "CC": {
+     "exacte": 46.0,
+     "n": 50
+    },
+    "verbs incoatius": {
+     "exacte": 80.0,
+     "n": 25
+    },
+    "subjecte el·líptic": {
+     "exacte": 70.0,
+     "n": 20
+    }
+   },
+   "ms_per_frase": 3.9,
+   "tokens_prompt_mitjana": 22.1
+  },
+  "10k": {
+   "global": {
+    "json_valid": 100.0,
+    "analisi_valida": 94.4,
+    "subjecte": 94.4,
+    "nucli_verbal": 93.6,
+    "tipus_i_veu": 98.4,
+    "exacte": 69.2,
+    "F1_complements": 80.5,
+    "F1_funcions": 84.1,
+    "n": 250
+   },
+   "grups": {
+    "CD": {
+     "exacte": 90.0,
+     "n": 30
+    },
+    "CD+CI": {
+     "exacte": 100.0,
+     "n": 20
+    },
+    "pronoms febles": {
+     "exacte": 40.0,
+     "n": 15
+    },
+    "predicat nominal": {
+     "exacte": 80.0,
+     "n": 25
+    },
+    "veu passiva": {
+     "exacte": 95.0,
+     "n": 20
+    },
+    "impersonal": {
+     "exacte": 46.7,
+     "n": 15
+    },
+    "CPRED": {
+     "exacte": 46.7,
+     "n": 15
+    },
+    "CRV": {
+     "exacte": 6.7,
+     "n": 15
+    },
+    "CC": {
+     "exacte": 68.0,
+     "n": 50
+    },
+    "verbs incoatius": {
+     "exacte": 68.0,
+     "n": 25
+    },
+    "subjecte el·líptic": {
+     "exacte": 75.0,
+     "n": 20
+    }
+   },
+   "ms_per_frase": 4.0,
+   "tokens_prompt_mitjana": 22.1
+  },
+  "20k": {
+   "global": {
+    "json_valid": 99.6,
+    "analisi_valida": 95.2,
+    "subjecte": 93.6,
+    "nucli_verbal": 93.6,
+    "tipus_i_veu": 98.4,
+    "exacte": 73.2,
+    "F1_complements": 83.8,
+    "F1_funcions": 86.2,
+    "n": 250
+   },
+   "grups": {
+    "CD": {
+     "exacte": 90.0,
+     "n": 30
+    },
+    "CD+CI": {
+     "exacte": 85.0,
+     "n": 20
+    },
+    "pronoms febles": {
+     "exacte": 60.0,
+     "n": 15
+    },
+    "predicat nominal": {
+     "exacte": 96.0,
+     "n": 25
+    },
+    "veu passiva": {
+     "exacte": 85.0,
+     "n": 20
+    },
+    "impersonal": {
+     "exacte": 46.7,
+     "n": 15
+    },
+    "CPRED": {
+     "exacte": 53.3,
+     "n": 15
+    },
+    "CRV": {
+     "exacte": 6.7,
+     "n": 15
+    },
+    "CC": {
+     "exacte": 74.0,
+     "n": 50
+    },
+    "verbs incoatius": {
+     "exacte": 72.0,
+     "n": 25
+    },
+    "subjecte el·líptic": {
+     "exacte": 90.0,
+     "n": 20
+    }
+   },
+   "ms_per_frase": 4.0,
+   "tokens_prompt_mitjana": 22.1
+  },
+  "professor": {
+   "global": {
+    "json_valid": 99.6,
+    "analisi_valida": 95.6,
+    "subjecte": 98.8,
+    "nucli_verbal": 98.0,
+    "tipus_i_veu": 99.6,
+    "exacte": 91.2,
+    "F1_complements": 95.2,
+    "F1_funcions": 95.5,
+    "n": 250
+   },
+   "grups": {
+    "CD": {
+     "exacte": 100.0,
+     "n": 30
+    },
+    "CD+CI": {
+     "exacte": 100.0,
+     "n": 20
+    },
+    "pronoms febles": {
+     "exacte": 93.3,
+     "n": 15
+    },
+    "predicat nominal": {
+     "exacte": 88.0,
+     "n": 25
+    },
+    "veu passiva": {
+     "exacte": 95.0,
+     "n": 20
+    },
+    "impersonal": {
+     "exacte": 80.0,
+     "n": 15
+    },
+    "CPRED": {
+     "exacte": 66.7,
+     "n": 15
+    },
+    "CRV": {
+     "exacte": 73.3,
+     "n": 15
+    },
+    "CC": {
+     "exacte": 94.0,
+     "n": 50
+    },
+    "verbs incoatius": {
+     "exacte": 96.0,
+     "n": 25
+    },
+    "subjecte el·líptic": {
+     "exacte": 95.0,
+     "n": 20
+    }
+   },
+   "ms_per_frase": 881.1,
+   "tokens_prompt_mitjana": 613.9
+  }
  }
 }

@@ -24,6 +24,7 @@ El mini destil·lat amb 20k oracions encerta l'anàlisi exacta en el **73 %** de
 | dataset | [sintaxi-catala-destillada-4k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-4k) | [sintaxi-catala-destillada-10k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-10k) | [sintaxi-catala-destillada-20k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k) |
 | model bf16 (1,7 GB) | [Qwen3.5-0.8B-sintaxi-catala-4k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k) | [Qwen3.5-0.8B-sintaxi-catala-10k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k) | [Qwen3.5-0.8B-sintaxi-catala-20k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k) |
 | GGUF Q4_K_M (0,53 GB, LM Studio) | […-4k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k-GGUF) | […-10k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k-GGUF) | […-20k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-GGUF) |
+| test independent (250 a mà) | [sintaxi-catala-eval250](https://huggingface.co/datasets/xaviviro/sintaxi-catala-eval250) · per a les tres mides | | |
 
 ## Comparativa d'efectivitat (mesurada)
 
@@ -73,6 +74,49 @@ Al 10k i al 20k, les 30 anàlisis del Q4 són **idèntiques** a les del bf16; al
 
 El 10k ja encerta el complement predicatiu («Els avis envelleixen *tranquils* al poble», que el 4k marcava com a CD) i separa «un pont nou» (CD) de «sobre el riu» (CC de lloc). Cap mini copia bé «obeeixen» (4k «oboeyen», 10k «oboeixen», 20k «obeixen»). El 20k torna a posar «un pont nou sobre el riu» sencer com a CD (defensable com a complement del nom). Amb 10 oracions, la diferència 10k/20k és soroll.
 
+## Avaluació independent — eval250 (mesurada)
+
+La referència manual (30) és petita i el test de 300 té etiquetes del professor. Per això hi ha un tercer test: **250 oracions noves, escrites i anotades a mà**,
+separades de tot el procés de destil·lació. Cap no l'ha generada el professor i, comprovat, cap no coincideix amb les ~20.500 oracions generades.
+Cobreix 11 tipus d'oració. Dataset: [xaviviro/sintaxi-catala-eval250](https://huggingface.co/datasets/xaviviro/sintaxi-catala-eval250) (`eval250.py`, `resultats/eval250.jsonl`).
+
+![eval250 global](resultats/eval250_global.png)
+
+| model | anàlisi exacta | F1 complements | F1 funcions | subjecte | nucli verbal | tipus i veu | JSON vàlid | ms/oració |
+|---|---|---|---|---|---|---|---|---|
+| mini base (sense destil·lar) | **0.4** | 12.7 | 20.6 | 62.0 | 67.2 | 81.2 | 100.0 | 8.8 |
+| mini 4k | **62.0** | 74.9 | 80.2 | 90.8 | 88.8 | 99.2 | 100.0 | 3.9 |
+| mini 10k | **69.2** | 80.5 | 84.1 | 94.4 | 93.6 | 98.4 | 100.0 | 4.0 |
+| mini 20k | **73.2** | 83.8 | 86.2 | 93.6 | 93.6 | 98.4 | 99.6 | 4.0 |
+| professor Qwen3.8-27B | **91.2** | 95.2 | 95.5 | 98.8 | 98.0 | 99.6 | 99.6 | 881.1 |
+
+![eval250 per grups](resultats/eval250_grups.png)
+
+Anàlisi exacta (%) per tipus d'oració:
+
+| tipus d'oració (n) | mini base (sense destil·lar) | mini 4k | mini 10k | mini 20k | professor Qwen3.8-27B |
+|---|---|---|---|---|---|
+| CD (30) | 0 | 93 | 90 | 90 | 100 |
+| CD+CI (20) | 0 | 85 | 100 | 85 | 100 |
+| pronoms febles (15) | 0 | 33 | 40 | 60 | 93 |
+| predicat nominal (25) | 0 | 84 | 80 | 96 | 88 |
+| veu passiva (20) | 0 | 100 | 95 | 85 | 95 |
+| impersonal (15) | 0 | 0 | 47 | 47 | 80 |
+| CPRED (15) | 0 | 47 | 47 | 53 | 67 |
+| CRV (15) | 0 | 0 | 7 | 7 | 73 |
+| CC (50) | 0 | 46 | 68 | 74 | 94 |
+| verbs incoatius (25) | 4 | 80 | 68 | 72 | 96 |
+| subjecte el·líptic (20) | 0 | 70 | 75 | 90 | 95 |
+
+Què s'hi veu (mesurat):
+- Mateixa ordenació que a la referència manual: base 0,4 % → 4k 62 % → 10k 69 % → 20k 73 % → professor 91 %. Els resultats de la referència de 30 (60 / 70 / 73 / 93) es mantenen amb un test 8 vegades més gran.
+- **CRV**: el mini falla gairebé sempre (0–7 %). El confon amb un CC de lloc («pensa *en el seu avi*» → CC_LLOC). El professor l'encerta en el 73 %. Al train de 20k només hi ha 8 CRV.
+- **Impersonals** (47 % al 10k i al 20k, 0 % al 4k) i **pronoms febles** (33 → 60 %) són els altres punts febles; el professor hi arriba al 80 % i al 93 %.
+- CD, CD+CI, passiva i predicat nominal: ≥ 85 % al 20k.
+
+Hipòtesi (no comprovada): afegir més oracions amb CRV, impersonals i pronoms febles al dataset milloraria aquests grups més que no pas afegir-ne de genèriques.
+Cada grup té entre 15 i 50 oracions: una oració de 15 són 6,7 punts.
+
 ## Mides, memòria i cost
 
 ![mides i memòria](resultats/mides_memoria.png)
@@ -110,13 +154,14 @@ El 10k ja encerta el complement predicatiu («Els avis envelleixen *tranquils* a
 | `build.py` | regenera el notebook a partir dels `.py` |
 | `publicar_hf.py` | fitxes en català (amb gràfics i exemples) i publicació de datasets i models a Hugging Face |
 | `gguf_q4.py` | conversió a GGUF Q4_K_M, validació contra el bf16 i publicació |
+| `eval250.py` · `eval250_analisi.py` · `actualitza_cards.py` | les 250 oracions de test, les mètriques i gràfics per tipus d'oració, i l'actualització de les fitxes de HF |
 | `grafics_readme.py` + `resultats/resultats.json` | les gràfiques d'aquest README, a partir de les xifres mesurades |
 
 Les dades i els models es desen a Google Drive (`MyDrive/destillacio_sintaxi`) i es reutilitzen si ja hi són; l'ampliació del dataset va per lots (`OBJECTIU_FRASES`).
 
 ## Advertiments
 
-- La referència manual (30 oracions) està anotada a mà seguint la gramàtica escolar i **encara no s'ha revisat externament**: es pot corregir a `common.py`. Amb 30 oracions, cada oració és un 3,3 %.
+- La referència manual (30 oracions) i l'eval250 estan anotades a mà seguint la gramàtica escolar i **encara no s'han revisat externament**: es poden corregir a `common.py` i `eval250.py`. Amb 30 oracions, cada oració és un 3,3 %.
 - Els datasets són **sintètics**: el filtre comprova l'estructura, no la qualitat lingüística (hi queden castellanismes i oracions poc naturals).
 - Funcions poc representades (CRV, CC de quantitat): pocs exemples fins i tot al 20k (8 i 19).
 
@@ -124,3 +169,17 @@ Les dades i els models es desen a Google Drive (`MyDrive/destillacio_sintaxi`) i
 
 Codi: Apache 2.0. Datasets: CC BY 4.0. Models: Apache 2.0 (com el model base).
 Autor: Xavier Vinaixa Roselló ([xaviviro](https://huggingface.co/xaviviro)), Sorensen AI, Barcelona, Catalunya.
+
+## Citació
+
+```bibtex
+@misc{vinaixa2026destillaciosintaxi,
+  title        = {Destil·lació d'un analitzador sintàctic del català: de Qwen3.8-27B a Qwen3.5-0.8B},
+  author       = {Vinaixa Roselló, Xavier},
+  year         = {2026},
+  institution  = {Sorensen AI, Barcelona},
+  note         = {ORCID: 0009-0005-2769-9215},
+  doi          = {Pendent},
+  url          = {Pendent}
+}
+```
