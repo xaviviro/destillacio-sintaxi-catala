@@ -14,16 +14,16 @@ Sortida:  {"subjecte": {"text": "L'àvia", "nucli": "àvia", "eliptic": false},
 
 ![mida vs encert](resultats/mida_vs_encert.png)
 
-El mini destil·lat amb 10k oracions encerta l'anàlisi exacta en el **70 %** de la referència manual, ocupant **0,53 GB en Q4** (el professor, 55,6 GB, en fa el 93 %). Sense destil·lar, el mateix mini en fa el **0 %**.
+El mini destil·lat amb 20k oracions encerta l'anàlisi exacta en el **73 %** de la referència manual, ocupant **0,53 GB en Q4** (el professor, 55,6 GB, en fa el 93 %). Sense destil·lar, el mateix mini en fa el **0 %**.
 
 ## Models i datasets (Hugging Face)
 
 | | 4k | 10k | 20k |
 |---|---|---|---|
-| oracions generades → filtrades → train | 3.964 → 1.275 → 975 | 10.421 → 3.485 → 3.182 | *en curs* (20.512 generades) |
-| dataset | [sintaxi-catala-destillada-4k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-4k) | [sintaxi-catala-destillada-10k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-10k) | *en curs* |
-| model bf16 (1,7 GB) | [Qwen3.5-0.8B-sintaxi-catala-4k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k) | [Qwen3.5-0.8B-sintaxi-catala-10k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k) | *en curs* |
-| GGUF Q4_K_M (0,53 GB, LM Studio) | […-4k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k-GGUF) | […-10k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k-GGUF) | *en curs* |
+| oracions generades → filtrades → train | 3.964 → 1.275 → 975 | 10.421 → 3.485 → 3.182 | 20.512 → 6.953 → 6.649 |
+| dataset | [sintaxi-catala-destillada-4k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-4k) | [sintaxi-catala-destillada-10k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-10k) | [sintaxi-catala-destillada-20k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k) |
+| model bf16 (1,7 GB) | [Qwen3.5-0.8B-sintaxi-catala-4k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k) | [Qwen3.5-0.8B-sintaxi-catala-10k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k) | [Qwen3.5-0.8B-sintaxi-catala-20k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k) |
+| GGUF Q4_K_M (0,53 GB, LM Studio) | […-4k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k-GGUF) | […-10k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k-GGUF) | […-20k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-GGUF) |
 
 ## Comparativa d'efectivitat (mesurada)
 
@@ -36,11 +36,13 @@ El mini destil·lat amb 10k oracions encerta l'anàlisi exacta en el **70 %** de
 | Qwen3.5-0.8B base | prompt complet (~580 tokens) | 0,0 % | 18,9 % | 27,4 % | 53,3 % | 66,7 % | 53,3 % |
 | mini 4k | només l'oració (~23 tokens) | 60,0 % | 77,4 % | 83,0 % | 86,7 % | 90,0 % | 96,7 % |
 | mini 4k · Q4_K_M | només l'oració | 60,0 % | 78,1 % | 83,8 % | 86,7 % | 90,0 % | 93,3 % |
-| **mini 10k** | només l'oració | **70,0 %** | **80,7 %** | **86,2 %** | **93,3 %** | **90,0 %** | **96,7 %** |
+| mini 10k | només l'oració | 70,0 % | 80,7 % | 86,2 % | 93,3 % | 90,0 % | 96,7 % |
 | mini 10k · Q4_K_M | només l'oració | 70,0 % | 80,7 % | 86,2 % | 93,3 % | 90,0 % | 96,7 % |
+| **mini 20k** | només l'oració | **73,3 %** | **85,5 %** | **87,3 %** | **90,0 %** | **96,7 %** | **100 %** |
+| mini 20k · Q4_K_M | només l'oració | 73,3 % | 85,5 % | 87,3 % | 90,0 % | 96,7 % | 100 % |
 | Qwen3.8-27B (professor) | prompt complet + raonament | 93,3 % | 96,4 % | 96,4 % | 100 % | 100 % | 100 % |
 
-Al 10k, les 30 anàlisis del Q4 són **idèntiques** a les del bf16; al 4k ho són 27 de 30 (90 %).
+Al 10k i al 20k, les 30 anàlisis del Q4 són **idèntiques** a les del bf16; al 4k ho són 27 de 30 (90 %).
 
 **Test — 300 oracions (etiquetes del professor, filtrades; el mateix test per a totes les mides)**
 
@@ -51,10 +53,11 @@ Al 10k, les 30 anàlisis del Q4 són **idèntiques** a les del bf16; al 4k ho s�
 | Qwen3.5-0.8B base | 0,3 % | 10,1 % | 77,3 % | 64,3 % |
 | mini 4k | 86,7 % | 92,4 % | 98,3 % | 96,3 % |
 | mini 10k | 92,3 % | 94,4 % | 99,3 % | 98,0 % |
+| mini 20k | 92,3 % | 95,4 % | 99,0 % | 99,3 % |
 
 ⚠️ Aquest test mesura **com imita el professor**, no la correcció absoluta. La xifra de qualitat és la de la referència manual.
 
-**Corba de dades**
+**Corba de dades** — de 4k a 10k l'anàlisi exacta guanya 10 punts; de 10k a 20k, 3 (i el test no es mou): rendiments decreixents.
 
 ![corba de dades](resultats/corba_dades.png)
 
@@ -66,8 +69,9 @@ Al 10k, les 30 anàlisis del Q4 són **idèntiques** a les del bf16; al 4k ho s�
 | base, només l'oració | 0 / 10 (no retorna JSON) |
 | mini 4k (bf16 i Q4) | 7 / 10 |
 | mini 10k (bf16 i Q4) | 9 / 10 |
+| mini 20k (bf16 i Q4) | 8 / 10 (+1 discutible) |
 
-El 10k ja encerta el complement predicatiu («Els avis envelleixen *tranquils* al poble», que el 4k marcava com a CD) i separa «un pont nou» (CD) de «sobre el riu» (CC de lloc). Continua copiant malament «obeeixen» → «oboeixen».
+El 10k ja encerta el complement predicatiu («Els avis envelleixen *tranquils* al poble», que el 4k marcava com a CD) i separa «un pont nou» (CD) de «sobre el riu» (CC de lloc). Cap mini copia bé «obeeixen» (4k «oboeyen», 10k «oboeixen», 20k «obeixen»). El 20k torna a posar «un pont nou sobre el riu» sencer com a CD (defensable com a complement del nom). Amb 10 oracions, la diferència 10k/20k és soroll.
 
 ## Mides, memòria i cost
 
@@ -82,8 +86,8 @@ El 10k ja encerta el complement predicatiu («Els avis envelleixen *tranquils* a
 ![cost per oració](resultats/cost_per_oracio.png)
 
 - **Tokens d'entrada per oració**: ~580 (base i professor, amb instruccions i exemple) → **~23** (mini destil·lat, només l'oració): **−96 %**.
-- **Temps per oració** (lot de 30 amb vLLM, RTX PRO 6000): professor 1.712 ms (raona) · base 21 ms · mini 11 ms. Q4 amb llama.cpp a una L4, d'una en una: ~0,42 s.
-- **Cost de fer el dataset**: el professor analitza cada oració en ~0,68 s (~750 tokens de raonament + resposta, ~1.100 tokens/s). 10.421 oracions ≈ 2 h de GPU.
+- **Temps per oració** (lot de 30 amb vLLM, RTX PRO 6000): professor 1.712 ms (raona) · base 21 ms · mini 11 ms. Q4 amb llama.cpp, d'una en una: ~0,42 s a una L4 i ~0,15 s a una RTX PRO 6000.
+- **Cost de fer el dataset**: el professor analitza cada oració en ~0,68 s (~750 tokens de raonament + resposta, ~1.100 tokens/s). 20.512 oracions ≈ 4 h de GPU.
 
 **No mesurat**: memòria i velocitat a Mac (LM Studio). Les xifres són de GPUs NVIDIA a Colab.
 
@@ -114,7 +118,7 @@ Les dades i els models es desen a Google Drive (`MyDrive/destillacio_sintaxi`) i
 
 - La referència manual (30 oracions) està anotada a mà seguint la gramàtica escolar i **encara no s'ha revisat externament**: es pot corregir a `common.py`. Amb 30 oracions, cada oració és un 3,3 %.
 - Els datasets són **sintètics**: el filtre comprova l'estructura, no la qualitat lingüística (hi queden castellanismes i oracions poc naturals).
-- Funcions poc representades (CRV, CC de quantitat): pocs exemples fins i tot al 10k.
+- Funcions poc representades (CRV, CC de quantitat): pocs exemples fins i tot al 20k (8 i 19).
 
 ## Llicència
 

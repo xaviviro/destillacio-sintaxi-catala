@@ -113,7 +113,13 @@
    "anotacio": {
     "s_frase": 0.68,
     "tokens_sortida_frase": 750,
-    "tokens_s": 1100
+    "tokens_s": 1100,
+    "lot2": {
+     "n": 10091,
+     "segons": 6755.3,
+     "ms_frase": 669.4,
+     "tokens_s": 1122.8
+    }
    }
   },
   "10k_q4": {
@@ -133,6 +139,49 @@
    "mida_GB": 0.535,
    "gpu_llamacpp_GB": 0.88,
    "_nota": "les 30 anàlisis del Q4 són idèntiques a les del bf16, per tant les mètriques sobre la referència són les mateixes"
+  },
+  "20k": {
+   "nom": "mini 20k",
+   "exemples_train": 6649,
+   "generades": 20512,
+   "prompt": "només l'oració",
+   "ref": {
+    "exacte": 73.3,
+    "F1_complements": 85.5,
+    "F1_funcions": 87.3,
+    "subjecte": 90.0,
+    "nucli_verbal": 96.7,
+    "analisi_valida": 100.0
+   },
+   "test": {
+    "exacte": 92.3,
+    "F1_complements": 95.4,
+    "F1_funcions": 97.5,
+    "subjecte": 99.0,
+    "nucli_verbal": 99.3,
+    "analisi_valida": 97.7
+   },
+   "tokens_prompt": 22.6,
+   "ms_frase_vllm_lot": 11.1,
+   "mida_GB": 1.706,
+   "params_M": 853
+  },
+  "20k_q4": {
+   "nom": "mini 20k Q4_K_M",
+   "exemples_train": 6649,
+   "ref": {
+    "exacte": 73.3,
+    "F1_complements": 85.5,
+    "F1_funcions": 87.3,
+    "subjecte": 90.0,
+    "nucli_verbal": 96.7,
+    "analisi_valida": 100.0
+   },
+   "identic_a_bf16": 100.0,
+   "json_valid": 100.0,
+   "s_frase_llamacpp_RTXPRO6000": 0.154,
+   "mida_GB": 0.535,
+   "_nota": "30/30 anàlisis idèntiques al bf16 (mesurat)"
   }
  },
  "memoria": {
@@ -146,6 +195,8 @@
   "4k": 7,
   "4k_q4": 7,
   "10k": 9,
-  "10k_q4": 9
+  "10k_q4": 9,
+  "20k": 8,
+  "20k_q4": 8
  }
 }

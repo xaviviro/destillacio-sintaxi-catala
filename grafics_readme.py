@@ -41,7 +41,7 @@ ax.axhline(M["professor"]["ref"]["exacte"], color="#4C78A8", ls=":", lw=1.5)
 ax.text(xs[0] + 50, M["professor"]["ref"]["exacte"] + 1.5, "professor 27B (referència manual)", color="#4C78A8", ha="left", fontsize=9)
 ax.set_xticks(xs, ["base\n(0)"] + [f"{m}\n({M[m]['exemples_train']:,} ex.)".replace(",", ".") for m in mides])
 ax.set_ylim(-5, 105); ax.set_ylabel("% anàlisi exacta")
-ax.set_title("Com més dades destil·lades, millor", loc="left", fontsize=13, fontweight="bold")
+ax.set_title("Més dades destil·lades, millor… però cada cop menys", loc="left", fontsize=13, fontweight="bold")
 ax.legend(frameon=False, loc="lower right", fontsize=9)
 plt.tight_layout(); plt.savefig("resultats/corba_dades.png", dpi=160); plt.close()
 
