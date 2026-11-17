@@ -10,6 +10,13 @@ Demo per a una xerrada sobre models petits: un **analitzador sintàctic del cata
 4. **Destil·lació**: SFT complet de l'alumne amb les anàlisis filtrades (sense raonament).
 5. **Avaluació**: petit base vs destil·lat vs professor, sobre la referència manual i un test de 300 oracions.
 
+## A Hugging Face
+
+| | 4k (3.964 oracions generades → 975 d'entrenament) | 10k |
+|---|---|---|
+| dataset | [xaviviro/sintaxi-catala-destillada-4k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-4k) | [xaviviro/sintaxi-catala-destillada-10k](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-10k) *(en preparació)* |
+| model | [xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k) | [xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k) *(en preparació)* |
+
 ## Fitxers
 
 | fitxer | què fa |
@@ -19,18 +26,29 @@ Demo per a una xerrada sobre models petits: un **analitzador sintàctic del cata
 | `infer.py` | inferència per lots amb vLLM (en un procés a part, per alliberar la GPU) |
 | `gen_frases.py` | el professor genera oracions amb estructura demanada |
 | `build.py` | regenera el notebook a partir dels `.py` |
+| `publicar_hf.py` | genera les fitxes (en català, amb gràfics i exemples) i publica datasets i models a Hugging Face |
 
 Les dades i el model es desen a Google Drive (`MyDrive/destillacio_sintaxi`) i es reutilitzen si ja hi són.
 
-## Resultats
+## Resultats (mesurats, model 4k)
 
-**Mesurat** (RTX PRO 6000 Blackwell 96 GB, Colab Pro+) — Qwen3.5-0.8B base, 30 oracions de referència:
+![resultats](resultats_4k.png)
 
-| JSON vàlid | anàlisi coherent | subjecte | nucli verbal | F1 complements | anàlisi exacta |
-|---|---|---|---|---|---|
-| 100 % | 50 % | 53 % | 63 % | 18 % | **0 %** |
+**Referència manual — 30 oracions anotades a mà**
 
-**Pendent de mesurar**: professor, alumne destil·lat, temps i cost.
+| model | anàlisi exacta | F1 complements | subjecte | nucli verbal | tokens de prompt | ms/frase* |
+|---|---|---|---|---|---|---|
+| Qwen3.5-0.8B base (amb prompt) | 0,0 % | 18,9 % | 53,3 % | 66,7 % | 579 | 21 |
+| **destil·lat 4k (només l'oració)** | **60,0 %** | **77,4 %** | **86,7 %** | **90,0 %** | **23** | **11** |
+| Qwen3.8-27B professor (amb prompt, raonant) | 93,3 % | 96,4 % | 100 % | 100 % | 615 | 1.712 |
+
+**Test — 300 oracions (etiquetes del professor)**: anàlisi exacta 0,3 % (base) → **86,7 %** (destil·lat 4k); F1 complements 10,1 % → **92,4 %**.
+
+\* Temps mitjà per oració en lot amb vLLM (RTX PRO 6000, 96 GB); no és latència d'una crida aïllada.
+
+**Verbs incoatius** (10 oracions fora del dataset): base amb prompt 1/10; base només amb l'oració 0/10 (no torna JSON); destil·lat 4k 7/10 (+1 discutible). Errors: CPRED confós amb CD, i alguna forma verbal mal copiada («obeeixen» → «oboeyen»).
+
+**Filtre**: de 3.964 anàlisis del professor en passen 1.275 (32 %); la majoria de descarts (2.422) són perquè l'anàlisi a cegues no coincideix amb l'estructura demanada.
 
 ## Advertiments
 
