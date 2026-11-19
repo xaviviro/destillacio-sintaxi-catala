@@ -26,7 +26,9 @@ El mini destil·lat amb 20k oracions encerta l'anàlisi exacta en el **73 %** de
 | GGUF Q4_K_M (0,53 GB, LM Studio) | […-4k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k-GGUF) | […-10k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k-GGUF) | […-20k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-GGUF) |
 | test independent (250 a mà) | [sintaxi-catala-eval250](https://huggingface.co/datasets/xaviviro/sintaxi-catala-eval250) · per a les tres mides | | |
 
-**20k + reforç** (el millor mini, vegeu «Segona ronda» més avall): [dataset](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc) · [model bf16](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc) · [GGUF Q4_K_M per a LM Studio](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-GGUF).
+**20k + reforç** (el millor mini, vegeu «Segona ronda» més avall): [dataset](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc) · [model bf16](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc) · [**MLX 4 bits per a Mac i LM Studio**](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-MLX-4bit) (0,44 GB) · [GGUF Q4_K_M](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-GGUF).
+
+> **Avís (novembre de 2026):** els GGUF publicats guarden fusionats alguns pesos de les capes lineals (`ssm_beta_alpha`, `attn_qkv_gate`) i les versions actuals de llama.cpp i LM Studio no els carreguen (`tensor 'blk.0.ssm_beta.weight' not found`). Comprovat amb el GGUF del 20k + reforç. En un Mac, feu servir la versió MLX.
 
 ## Comparativa d'efectivitat (mesurada)
 
@@ -134,6 +136,7 @@ pronoms febles (30 %) i CPRED (10 %), amb una pista sobre què és un CRV. Les v
 - Avís: el reforç es va dirigir als grups on fallava l'eval250. Cap oració de l'eval250 no s'ha fet servir, però en aquests grups l'eval250 ja no és una mesura del tot independent.
 
 Model: [Qwen3.5-0.8B-sintaxi-catala-20k-reforc](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc) ·
+MLX 4 bits: [...-20k-reforc-MLX-4bit](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-MLX-4bit) ·
 GGUF: [...-20k-reforc-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-GGUF) ·
 dataset: [sintaxi-catala-destillada-20k-reforc](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc).
 Codi: `gen_frases.py --reforc 1`, `reforc.py`, `reforc_train_cell.py`, `publica_reforc.py`.
@@ -147,6 +150,7 @@ Codi: `gen_frases.py --reforc 1`, `reforc.py`, `reforc_train_cell.py`, `publica_
 | Qwen3.8-27B (professor) | 27,8 B | 55,6 GB (bf16) | ≥ 55,6 GB de GPU només per als pesos (no mesurat en execució: vLLM reserva tota la GPU que se li dona) |
 | Qwen3.5-0.8B (base i minis) | 0,85–0,87 B | 1,7 GB (bf16) | **1,78 GB** de GPU de pic (transformers, una oració; sense el context CUDA) |
 | mini Q4_K_M (GGUF) | — | **0,53 GB** | **~0,88 GB** de GPU (llama.cpp, context de 2.048 tokens, inclou el context CUDA) |
+| mini 20k + reforç, MLX 4 bits | — | **0,44 GB** | **0,42 GB** actius (mlx-lm, MacBook Pro M3 Max); ~0,6 GB de pic generant |
 
 ![cost per oració](resultats/cost_per_oracio.png)
 
@@ -154,7 +158,15 @@ Codi: `gen_frases.py --reforc 1`, `reforc.py`, `reforc_train_cell.py`, `publica_
 - **Temps per oració** (lot de 30 amb vLLM, RTX PRO 6000): professor 1.712 ms (raona) · base 21 ms · mini 11 ms. Q4 amb llama.cpp, d'una en una: ~0,42 s a una L4 i ~0,15 s a una RTX PRO 6000.
 - **Cost de fer el dataset**: el professor analitza cada oració en ~0,68 s (~750 tokens de raonament + resposta, ~1.100 tokens/s). 20.512 oracions ≈ 4 h de GPU.
 
-**No mesurat**: memòria i velocitat a Mac (LM Studio). Les xifres són de GPUs NVIDIA a Colab.
+### En un Mac (mesurat, MacBook Pro M3 Max, MLX 4 bits del 20k + reforç)
+
+| | temps per oració | primer token | velocitat |
+|---|---|---|---|
+| mlx-lm (Python) | 0,33–0,37 s | ~20 ms | ~270 tokens/s |
+| LM Studio (servidor local, motor MLX 1.14.0) | 0,37–0,43 s | ~45 ms | ~245 tokens/s |
+
+D'una en una, sense agrupar. Quantitzat a 4 bits amb MLX, l'eval250 dona **80,0 %** d'anàlisi exacta (bf16: 80,8 %) i la referència manual de 30, **83,3 %** (igual que el bf16).
+La resta de xifres d'aquesta secció són de GPUs NVIDIA a Colab.
 
 ## Com s'ha fet
 
