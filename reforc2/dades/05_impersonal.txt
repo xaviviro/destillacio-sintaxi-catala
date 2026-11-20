@@ -1,0 +1,45 @@
+# «fer» + fenomen meteorològic: nucli «fa» i el nom és CD; impersonal
+Fa vent a la costa. | imp | Fa | CD=vent; CC_LLOC=a la costa
+Feia fred aquell hivern. | imp | Feia | CD=fred; CC_TEMPS=aquell hivern
+Farà calor demà. | imp | Farà | CD=calor; CC_TEMPS=demà
+Fa bon temps a Mallorca. | imp | Fa | CD=bon temps; CC_LLOC=a Mallorca
+Ha fet molta calor aquest estiu. | imp | Ha fet | CD=molta calor; CC_TEMPS=aquest estiu
+Feia sol a Cadaqués. | imp | Feia | CD=sol; CC_LLOC=a Cadaqués
+Feia boira a la vall. | imp | Feia | CD=boira; CC_LLOC=a la vall
+Avui fa mal temps. | imp | fa | CC_TEMPS=Avui; CD=mal temps
+Fa molt de fred a la muntanya. | imp | Fa | CD=molt de fred; CC_LLOC=a la muntanya
+Farà vent a la tarda. | imp | Farà | CD=vent; CC_TEMPS=a la tarda
+A l'hivern fa fred. | imp | fa | CC_TEMPS=A l'hivern; CD=fred
+Feia una calor insuportable. | imp | Feia | CD=una calor insuportable
+Fa fresca al vespre. | imp | Fa | CD=fresca; CC_TEMPS=al vespre
+Ha fet sol tot el dia. | imp | Ha fet | CD=sol; CC_TEMPS=tot el dia
+# Verbs meteorològics: impersonals (no subjecte el·líptic), també en temps compostos
+Ha nevat tota la setmana. | imp | Ha nevat | CC_TEMPS=tota la setmana
+Ha plogut molt aquesta tardor. | imp | Ha plogut | CC_QUANTITAT=molt; CC_TEMPS=aquesta tardor
+Plourà a la tarda. | imp | Plourà | CC_TEMPS=a la tarda
+Nevava a les muntanyes. | imp | Nevava | CC_LLOC=a les muntanyes
+Ha calamarsejat a l'Empordà. | imp | Ha calamarsejat | CC_LLOC=a l'Empordà
+Trona lluny. | imp | Trona | CC_LLOC=lluny
+Llampeguejava tota la nit. | imp | Llampeguejava | CC_TEMPS=tota la nit
+Plovia a bots i barrals. | imp | Plovia | CC_MANERA=a bots i barrals
+Ha glaçat aquesta matinada. | imp | Ha glaçat | CC_TEMPS=aquesta matinada
+Nevarà a partir de mil metres. | imp | Nevarà | CC_LLOC=a partir de mil metres
+Està plovent a Barcelona. | imp | Està plovent | CC_LLOC=a Barcelona
+Va tronar molt ahir a la nit. | imp | Va tronar | CC_QUANTITAT=molt; CC_TEMPS=ahir a la nit
+Plou fort. | imp | Plou | CC_MANERA=fort
+Comença a ploure. | imp | Comença a ploure | 
+Ha deixat de nevar. | imp | Ha deixat de nevar | 
+Pedregava al camp. | imp | Pedregava | CC_LLOC=al camp
+Clareja a les set. | imp | Clareja | CC_TEMPS=a les set
+# haver-hi: «hi ha» al nucli
+Hi ha molts cotxes al pàrquing. | imp | Hi ha | CD=molts cotxes; CC_LLOC=al pàrquing
+Hi havia un gat a la teulada. | imp | Hi havia | CD=un gat; CC_LLOC=a la teulada
+Hi haurà concert dissabte. | imp | Hi haurà | CD=concert; CC_TEMPS=dissabte
+Hi ha hagut un accident a l'autopista. | imp | Hi ha hagut | CD=un accident; CC_LLOC=a l'autopista
+Al poble hi ha dues fleques. | imp | hi ha | CC_LLOC=Al poble; CD=dues fleques
+N'hi ha tres a la nevera. | imp | hi ha | CD=N'; CD=tres; CC_LLOC=a la nevera
+Hi havia massa soroll. | imp | Hi havia | CD=massa soroll
+# Impersonals amb «es» i altres
+Aquí es menja molt bé. | imp | es menja | CC_LLOC=Aquí; CC_MANERA=molt bé
+Es viu bé en aquest barri. | imp | Es viu | CC_MANERA=bé; CC_LLOC=en aquest barri
+Es treballa molt en aquesta empresa. | imp | Es treballa | CC_QUANTITAT=molt; CC_LLOC=en aquesta empresa

@@ -1,0 +1,31 @@
+# Còpia literal: noms propis, majúscules i verbs incoatius (-eix) amb subjecte explícit
+La Nerea pateix insomni. | La Nerea>Nerea | pateix | CD=insomni
+En Gerard construeix maquetes de trens. | En Gerard>Gerard | construeix | CD=maquetes de trens
+La Laura serveix el te a les cinc. | La Laura>Laura | serveix | CD=el te; CC_TEMPS=a les cinc
+En Jan reparteix els fulls a classe. | En Jan>Jan | reparteix | CD=els fulls; CC_LLOC=a classe
+La Ivet afegeix sucre al cafè. | La Ivet>Ivet | afegeix | CD=sucre; CC_LLOC=al cafè
+En Nil prefereix la muntanya. | En Nil>Nil | prefereix | CD=la muntanya
+La Mia llegeix còmics al llit. | La Mia>Mia | llegeix | CD=còmics; CC_LLOC=al llit
+N'Hug obeeix els seus pares. | N'Hug>Hug | obeeix | CD=els seus pares
+La Jana coneix el camí. | La Jana>Jana | coneix | CD=el camí
+En Joel engreixa els porcs a la granja. | En Joel>Joel | engreixa | CD=els porcs; CC_LLOC=a la granja
+La Sofia dibuixa els ocells del parc. | La Sofia>Sofia | dibuixa | CD=els ocells del parc
+En Marc decideix el menú. | En Marc>Marc | decideix | CD=el menú
+L'Aina omple les ampolles a la font. | L'Aina>Aina | omple | CD=les ampolles; CC_LLOC=a la font
+En Pau i la Marta construeixen una casa. | En Pau i la Marta>Pau i la Marta | construeixen | CD=una casa
+La Mariona agraeix l'ajuda als voluntaris. | La Mariona>Mariona | agraeix | CD=l'ajuda; CI=als voluntaris
+En Biel distribueix els diaris pel barri. | En Biel>Biel | distribueix | CD=els diaris; CC_LLOC=pel barri
+L'Abril serveix la sopa als convidats. | L'Abril>Abril | serveix | CD=la sopa; CI=als convidats
+La Núria Puig dirigeix l'orquestra. | La Núria Puig>Núria Puig | dirigeix | CD=l'orquestra
+En Xavier Roca presideix l'associació. | En Xavier Roca>Xavier Roca | presideix | CD=l'associació
+Els Bosch viuen a Vic. | Els Bosch>Bosch | viuen | CC_LLOC=a Vic
+La Txell pateix mal de queixal. | La Txell>Txell | pateix | CD=mal de queixal
+Afegim una mica d'oli. | el | Afegim | CD=una mica d'oli
+Bevem un got de llet. | el | Bevem | CD=un got de llet
+Compro mig quilo de tomàquets. | el | Compro | CD=mig quilo de tomàquets
+La Clara menja un tros de pastís. | La Clara>Clara | menja | CD=un tros de pastís
+Tenim molta feina. | el | Tenim | CD=molta feina
+Les granotes salten a la bassa. | Les granotes>granotes | salten | CC_LLOC=a la bassa
+Els ocells refilen als arbres. | Els ocells>ocells | refilen | CC_LLOC=als arbres
+Les abelles brunzeixen al jardí. | Les abelles>abelles | brunzeixen | CC_LLOC=al jardí
+Els infants somriuen. | Els infants>infants | somriuen | 

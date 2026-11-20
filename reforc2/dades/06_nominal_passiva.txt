@@ -1,0 +1,45 @@
+# Predicat nominal amb «estar» + adjectiu (ATRIBUT, no CPRED), també amb subjecte el·líptic
+Esteu preparats? | el | nom:Esteu | ATRIBUT=preparats
+Estàs trista? | el | nom:Estàs | ATRIBUT=trista
+Estem molt contents. | el | nom:Estem | ATRIBUT=molt contents
+Estaven esgotats. | el | nom:Estaven | ATRIBUT=esgotats
+Estic malalt. | el | nom:Estic | ATRIBUT=malalt
+Està enfadada amb el seu germà. | el | nom:Està | ATRIBUT=enfadada amb el seu germà
+Soc infermera. | el | nom:Soc | ATRIBUT=infermera
+Serem puntuals. | el | nom:Serem | ATRIBUT=puntuals
+Eren germans. | el | nom:Eren | ATRIBUT=germans
+Seràs una gran metgessa. | el | nom:Seràs | ATRIBUT=una gran metgessa
+Semblàveu nerviosos. | el | nom:Semblàveu | ATRIBUT=nerviosos
+Serà advocat. | el | nom:Serà | ATRIBUT=advocat
+Érem molt joves. | el | nom:Érem | ATRIBUT=molt joves
+# Atribut + CC: l'adverbi de temps o lloc no forma part de l'atribut
+Aquesta botiga està sempre plena. | Aquesta botiga>botiga | nom:està | CC_TEMPS=sempre; ATRIBUT=plena
+El metro està sempre ple al matí. | El metro>metro | nom:està | CC_TEMPS=sempre; ATRIBUT=ple; CC_TEMPS=al matí
+La platja era buida a l'hivern. | La platja>platja | nom:era | ATRIBUT=buida; CC_TEMPS=a l'hivern
+Els nens estan cansats avui. | Els nens>nens | nom:estan | ATRIBUT=cansats; CC_TEMPS=avui
+El cafè ja està fred. | El cafè>cafè | nom:està | CC_TEMPS=ja; ATRIBUT=fred
+La Rosa està malalta des de dilluns. | La Rosa>Rosa | nom:està | ATRIBUT=malalta; CC_TEMPS=des de dilluns
+L'aigua està molt freda a l'abril. | L'aigua>aigua | nom:està | ATRIBUT=molt freda; CC_TEMPS=a l'abril
+Les entrades són gratuïtes els diumenges. | Les entrades>entrades | nom:són | ATRIBUT=gratuïtes; CC_TEMPS=els diumenges
+El museu és tancat els dilluns. | El museu>museu | nom:és | ATRIBUT=tancat; CC_TEMPS=els dilluns
+Els carrers estaven deserts a la nit. | Els carrers>carrers | nom:estaven | ATRIBUT=deserts; CC_TEMPS=a la nit
+L'Àlex sempre està de bon humor. | L'Àlex>Àlex | nom:està | CC_TEMPS=sempre; ATRIBUT=de bon humor
+La sala està plena de gent. | La sala>sala | nom:està | ATRIBUT=plena de gent
+El cel està ennuvolat a la costa. | El cel>cel | nom:està | ATRIBUT=ennuvolat; CC_LLOC=a la costa
+# Veu passiva perifràstica en tots els temps (ser + participi), no predicat nominal
+Les obres seran acabades l'any vinent. | Les obres>obres | pas:seran acabades | CC_TEMPS=l'any vinent
+El pont va ser inaugurat el 1992. | El pont>pont | pas:va ser inaugurat | CC_TEMPS=el 1992
+Els guanyadors seran anunciats dissabte. | Els guanyadors>guanyadors | pas:seran anunciats | CC_TEMPS=dissabte
+La carta ha estat enviada aquest matí. | La carta>carta | pas:ha estat enviada | CC_TEMPS=aquest matí
+El quadre serà restaurat al museu. | El quadre>quadre | pas:serà restaurat | CC_LLOC=al museu
+Els presos van ser alliberats ahir. | Els presos>presos | pas:van ser alliberats | CC_TEMPS=ahir
+La notícia serà publicada demà al diari. | La notícia>notícia | pas:serà publicada | CC_TEMPS=demà; CC_LLOC=al diari
+Les cartes eren repartides cada matí. | Les cartes>cartes | pas:eren repartides | CC_TEMPS=cada matí
+L'edifici va ser enderrocat. | L'edifici>edifici | pas:va ser enderrocat | 
+Els resultats han estat revisats pel comitè. | Els resultats>resultats | pas:han estat revisats | CAG=pel comitè
+El reglament serà votat pel consell escolar. | El reglament>reglament | pas:serà votat | CAG=pel consell escolar
+Els ferits van ser atesos a l'hospital. | Els ferits>ferits | pas:van ser atesos | CC_LLOC=a l'hospital
+La festa serà organitzada pels veïns. | La festa>festa | pas:serà organitzada | CAG=pels veïns
+El lladre va ser detingut a l'aeroport. | El lladre>lladre | pas:va ser detingut | CC_LLOC=a l'aeroport
+Les vacunes seran distribuïdes la setmana que ve. | Les vacunes>vacunes | pas:seran distribuïdes | CC_TEMPS=la setmana que ve
+El partit serà retransmès per la televisió. | El partit>partit | pas:serà retransmès | CAG=per la televisió

@@ -303,6 +303,144 @@
   "ms_per_frase": 3.9,
   "tokens_prompt_mitjana": 22.1
  },
+ "20k_reforc2": {
+  "global": {
+   "json_valid": 100.0,
+   "analisi_valida": 97.2,
+   "subjecte": 99.6,
+   "nucli_verbal": 97.2,
+   "tipus_i_veu": 99.6,
+   "exacte": 94.4,
+   "F1_complements": 97.4,
+   "F1_funcions": 98.0,
+   "n": 250
+  },
+  "grups": {
+   "CD": {
+    "json_valid": 100.0,
+    "analisi_valida": 100.0,
+    "subjecte": 100.0,
+    "nucli_verbal": 100.0,
+    "tipus_i_veu": 100.0,
+    "exacte": 93.3,
+    "F1_complements": 93.5,
+    "F1_funcions": 96.1,
+    "n": 30
+   },
+   "CD+CI": {
+    "json_valid": 100.0,
+    "analisi_valida": 100.0,
+    "subjecte": 100.0,
+    "nucli_verbal": 100.0,
+    "tipus_i_veu": 100.0,
+    "exacte": 100.0,
+    "F1_complements": 100.0,
+    "F1_funcions": 100.0,
+    "n": 20
+   },
+   "pronoms febles": {
+    "json_valid": 100.0,
+    "analisi_valida": 100.0,
+    "subjecte": 100.0,
+    "nucli_verbal": 100.0,
+    "tipus_i_veu": 100.0,
+    "exacte": 100.0,
+    "F1_complements": 100.0,
+    "F1_funcions": 100.0,
+    "n": 15
+   },
+   "predicat nominal": {
+    "json_valid": 100.0,
+    "analisi_valida": 100.0,
+    "subjecte": 100.0,
+    "nucli_verbal": 100.0,
+    "tipus_i_veu": 96.0,
+    "exacte": 96.0,
+    "F1_complements": 96.4,
+    "F1_funcions": 96.4,
+    "n": 25
+   },
+   "veu passiva": {
+    "json_valid": 100.0,
+    "analisi_valida": 100.0,
+    "subjecte": 100.0,
+    "nucli_verbal": 100.0,
+    "tipus_i_veu": 100.0,
+    "exacte": 100.0,
+    "F1_complements": 100.0,
+    "F1_funcions": 100.0,
+    "n": 20
+   },
+   "impersonal": {
+    "json_valid": 100.0,
+    "analisi_valida": 100.0,
+    "subjecte": 100.0,
+    "nucli_verbal": 80.0,
+    "tipus_i_veu": 100.0,
+    "exacte": 80.0,
+    "F1_complements": 93.9,
+    "F1_funcions": 93.9,
+    "n": 15
+   },
+   "CPRED": {
+    "json_valid": 100.0,
+    "analisi_valida": 93.3,
+    "subjecte": 93.3,
+    "nucli_verbal": 93.3,
+    "tipus_i_veu": 100.0,
+    "exacte": 80.0,
+    "F1_complements": 90.6,
+    "F1_funcions": 94.3,
+    "n": 15
+   },
+   "CRV": {
+    "json_valid": 100.0,
+    "analisi_valida": 100.0,
+    "subjecte": 100.0,
+    "nucli_verbal": 100.0,
+    "tipus_i_veu": 100.0,
+    "exacte": 100.0,
+    "F1_complements": 100.0,
+    "F1_funcions": 100.0,
+    "n": 15
+   },
+   "CC": {
+    "json_valid": 100.0,
+    "analisi_valida": 90.0,
+    "subjecte": 100.0,
+    "nucli_verbal": 94.0,
+    "tipus_i_veu": 100.0,
+    "exacte": 92.0,
+    "F1_complements": 98.8,
+    "F1_funcions": 98.8,
+    "n": 50
+   },
+   "verbs incoatius": {
+    "json_valid": 100.0,
+    "analisi_valida": 96.0,
+    "subjecte": 100.0,
+    "nucli_verbal": 100.0,
+    "tipus_i_veu": 100.0,
+    "exacte": 100.0,
+    "F1_complements": 100.0,
+    "F1_funcions": 100.0,
+    "n": 25
+   },
+   "subjecte el·líptic": {
+    "json_valid": 100.0,
+    "analisi_valida": 100.0,
+    "subjecte": 100.0,
+    "nucli_verbal": 100.0,
+    "tipus_i_veu": 100.0,
+    "exacte": 95.0,
+    "F1_complements": 96.9,
+    "F1_funcions": 96.9,
+    "n": 20
+   }
+  },
+  "ms_per_frase": "—",
+  "tokens_prompt_mitjana": 22.1
+ },
  "professor": {
   "global": {
    "json_valid": 99.6,

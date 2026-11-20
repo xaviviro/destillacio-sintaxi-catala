@@ -1,0 +1,42 @@
+# CD + CI amb «a» + persona (no és CC de lloc)
+La infermera dona la medicació al malalt. | La infermera>infermera | dona | CD=la medicació; CI=al malalt
+L'advocat explica el contracte a la clienta. | L'advocat>advocat | explica | CD=el contracte; CI=a la clienta
+He regalat un llibre a la meva germana. | el | He regalat | CD=un llibre; CI=a la meva germana
+En Ferran presta la bicicleta al seu amic. | En Ferran>Ferran | presta | CD=la bicicleta; CI=al seu amic
+Vam escriure una carta a l'alcaldessa. | el | Vam escriure | CD=una carta; CI=a l'alcaldessa
+La mestra torna els exàmens als alumnes. | La mestra>mestra | torna | CD=els exàmens; CI=als alumnes
+El cambrer porta la carta als clients. | El cambrer>cambrer | porta | CD=la carta; CI=als clients
+La farmacèutica ven les pastilles a l'avi. | La farmacèutica>farmacèutica | ven | CD=les pastilles; CI=a l'avi
+Envia una foto a la teva mare. | el | Envia | CD=una foto; CI=a la teva mare
+L'empresa paga el sou als treballadors. | L'empresa>empresa | paga | CD=el sou; CI=als treballadors
+El guia ensenya la catedral als turistes. | El guia>guia | ensenya | CD=la catedral; CI=als turistes
+Vaig demanar un favor al veí. | el | Vaig demanar | CD=un favor; CI=al veí
+La Montse deixa els apunts a la Irene. | La Montse>Montse | deixa | CD=els apunts; CI=a la Irene
+El carter lliura el paquet a la portera. | El carter>carter | lliura | CD=el paquet; CI=a la portera
+Hem comprat un gelat als nens. | el | Hem comprat | CD=un gelat; CI=als nens
+El jutge va llegir la sentència a l'acusat. | El jutge>jutge | va llegir | CD=la sentència; CI=a l'acusat
+Explicaré la notícia a la família. | el | Explicaré | CD=la notícia; CI=a la família
+El pare canta una cançó al nadó. | El pare>pare | canta | CD=una cançó; CI=al nadó
+La botiguera torna el canvi a la clienta. | La botiguera>botiguera | torna | CD=el canvi; CI=a la clienta
+L'entrenador dona instruccions als jugadors. | L'entrenador>entrenador | dona | CD=instruccions; CI=als jugadors
+Van oferir una feina a la Clàudia. | el | Van oferir | CD=una feina; CI=a la Clàudia
+El veterinari posa una vacuna al gos. | El veterinari>veterinari | posa | CD=una vacuna; CI=al gos
+La professora corregeix els deures als alumnes. | La professora>professora | corregeix | CD=els deures; CI=als alumnes
+Prepararé l'esmorzar als nens. | el | Prepararé | CD=l'esmorzar; CI=als nens
+El banc concedeix un préstec a la parella. | El banc>banc | concedeix | CD=un préstec; CI=a la parella
+L'àvia explica contes als nets. | L'àvia>àvia | explica | CD=contes; CI=als nets
+En Quim ha venut el cotxe al seu cunyat. | En Quim>Quim | ha venut | CD=el cotxe; CI=al seu cunyat
+La directora envia un correu als pares. | La directora>directora | envia | CD=un correu; CI=als pares
+Vam donar les gràcies a la cuinera. | el | Vam donar | CD=les gràcies; CI=a la cuinera
+El metge recomana repòs a la pacient. | El metge>metge | recomana | CD=repòs; CI=a la pacient
+# CI davant del CD i contrast amb CC de lloc real
+Dona a la Maria les claus del pis. | el | Dona | CI=a la Maria; CD=les claus del pis
+Porta als avis aquest pastís. | el | Porta | CI=als avis; CD=aquest pastís
+La Nora deixa les claus a la taula. | La Nora>Nora | deixa | CD=les claus; CC_LLOC=a la taula
+La Nora deixa les claus a la veïna. | La Nora>Nora | deixa | CD=les claus; CI=a la veïna
+Envio el paquet a Tarragona. | el | Envio | CD=el paquet; CC_LLOC=a Tarragona
+Envio el paquet a la Teresa. | el | Envio | CD=el paquet; CI=a la Teresa
+Hem portat el sofà al menjador. | el | Hem portat | CD=el sofà; CC_LLOC=al menjador
+Hem portat flors a l'àvia. | el | Hem portat | CD=flors; CI=a l'àvia
+El pagès porta les pomes al mercat. | El pagès>pagès | porta | CD=les pomes; CC_LLOC=al mercat
+El pagès porta les pomes al botiguer. | El pagès>pagès | porta | CD=les pomes; CI=al botiguer

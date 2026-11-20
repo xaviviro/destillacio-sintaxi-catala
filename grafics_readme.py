@@ -37,21 +37,34 @@ for conj, est, nom in (("ref", "-o", "anàlisi exacta · referència manual"), (
     ys = [M["base"][conj]["exacte"]] + [M[m][conj]["exacte"] for m in mides]
     ax.plot(xs, ys, est, color="#54A24B" if conj == "ref" else "#999", lw=2, label=nom)
     for x, y in zip(xs, ys): ax.annotate(f"{y:.0f}", (x, y), textcoords="offset points", xytext=(0, 7), ha="center", fontsize=9)
+# reforços: mateixes oracions del 20k + exemples dirigits als errors
+for k, nom, col in (("20k_reforc", "+ reforç 1", "#72B7B2"), ("20k_reforc2", "+ reforç 2", "#2E5E4E")):
+    if k in R:
+        n = R[k]["n_train"]
+        ax.plot([n], [R[k]["ref_exacte"]], "o", color=col, ms=9, zorder=4)
+        ax.plot([n], [R[k]["test_exacte"]], "s", color=col, ms=7, zorder=4, mfc="white")
+        ax.annotate(f"{nom}: {R[k]['ref_exacte']:.0f}", (n, R[k]["ref_exacte"]), textcoords="offset points",
+                    xytext=(-8, 8), ha="right", fontsize=9, color=col, fontweight="bold")
 ax.axhline(M["professor"]["ref"]["exacte"], color="#4C78A8", ls=":", lw=1.5)
 ax.text(xs[0] + 50, M["professor"]["ref"]["exacte"] + 1.5, "professor 27B (referència manual)", color="#4C78A8", ha="left", fontsize=9)
 ax.set_xticks(xs, ["base\n(0)"] + [f"{m}\n({M[m]['exemples_train']:,} ex.)".replace(",", ".") for m in mides])
 ax.set_ylim(-5, 105); ax.set_ylabel("% anàlisi exacta")
-ax.set_title("Més dades destil·lades, millor… però cada cop menys", loc="left", fontsize=13, fontweight="bold")
+ax.set_title("Més dades ajuden cada cop menys; dades dirigides, molt més", loc="left", fontsize=13, fontweight="bold")
 ax.legend(frameon=False, loc="lower right", fontsize=9)
 plt.tight_layout(); plt.savefig("resultats/corba_dades.png", dpi=160); plt.close()
 
 # mida vs encert
 fig, ax = plt.subplots(figsize=(8.5, 4.8))
 punts = [("base", "base bf16")] + [(m, f"{m} bf16") for m in mides] + [(f"{m}_q4", f"{m} Q4") for m in mides if f"{m}_q4" in M] + [("professor", "professor 27B bf16")]
+if "20k_reforc2" in R:
+    M["20k_reforc2"] = {"mida_GB": M["20k"]["mida_GB"], "ref": {"exacte": R["20k_reforc2"]["ref_exacte"]}}
+    M["20k_reforc2_mlx"] = {"mida_GB": 0.44, "ref": {"exacte": R["20k_reforc2"].get("ref_exacte_mlx4", R["20k_reforc2"]["ref_exacte"])}}
+    COL.update({"20k_reforc2": "#2E5E4E", "20k_reforc2_mlx": "#8FC1A9"})
+    punts += [("20k_reforc2", "+ 2 reforços bf16"), ("20k_reforc2_mlx", "+ 2 reforços MLX 4 bits")]
 for k, et in punts:
     x, y = M[k]["mida_GB"], M[k]["ref"]["exacte"]
     ax.scatter(x, y, s=140, color=COL[k], edgecolor="black", lw=0.5, zorder=3)
-    ax.annotate(et, (x, y), textcoords="offset points", xytext=(8, -4 if "q4" in k else 6), fontsize=9)
+    ax.annotate(et, (x, y), textcoords="offset points", xytext=(8, -16) if "reforc2" in k else (8, -4 if "q4" in k else 6), fontsize=9)
 ax.set_xscale("log"); ax.set_xlabel("mida dels fitxers del model (GB, escala logarítmica)"); ax.set_ylabel("% anàlisi exacta (referència manual)")
 ax.set_xlim(0.3, 120); ax.set_ylim(-8, 105)
 ax.set_title("Mida contra encert: fins a 100 vegades més petit", loc="left", fontsize=13, fontweight="bold")

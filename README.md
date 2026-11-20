@@ -14,7 +14,7 @@ Sortida:  {"subjecte": {"text": "L'àvia", "nucli": "àvia", "eliptic": false},
 
 ![mida vs encert](resultats/mida_vs_encert.png)
 
-El mini destil·lat amb 20k oracions encerta l'anàlisi exacta en el **73 %** de la referència manual, ocupant **0,53 GB en Q4** (el professor, 55,6 GB, en fa el 93 %). Sense destil·lar, el mateix mini en fa el **0 %**.
+Amb 20k oracions destil·lades i dues rondes de reforç dirigit, el mini encerta l'anàlisi exacta en el **94 %** de 250 oracions noves anotades a mà (eval250) i en el **97 %** de la referència manual, en **0,44 GB** (MLX 4 bits). El professor, de 55,6 GB, en fa el 91 % i el 93 %. Sense destil·lar, el mateix mini en fa el **0 %**.
 
 ## Models i datasets (Hugging Face)
 
@@ -26,7 +26,9 @@ El mini destil·lat amb 20k oracions encerta l'anàlisi exacta en el **73 %** de
 | GGUF Q4_K_M (0,53 GB, LM Studio) | […-4k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-4k-GGUF) | […-10k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-10k-GGUF) | […-20k-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-GGUF) |
 | test independent (250 a mà) | [sintaxi-catala-eval250](https://huggingface.co/datasets/xaviviro/sintaxi-catala-eval250) · per a les tres mides | | |
 
-**20k + reforç** (el millor mini, vegeu «Segona ronda» més avall): [dataset](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc) · [model bf16](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc) · [**MLX 4 bits per a Mac i LM Studio**](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-MLX-4bit) (0,44 GB) · [GGUF Q4_K_M](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-GGUF).
+**20k + 2 reforços** (el millor mini, vegeu «Tercera ronda» més avall): [dataset](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc2) · [model bf16](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc2) · [**MLX 4 bits per a Mac i LM Studio**](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc2-MLX-4bit) (0,44 GB).
+
+**20k + reforç** (ronda anterior): [dataset](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc) · [model bf16](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc) · [**MLX 4 bits per a Mac i LM Studio**](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-MLX-4bit) (0,44 GB) · [GGUF Q4_K_M](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc-GGUF).
 
 > **Avís (novembre de 2026):** els GGUF publicats guarden fusionats alguns pesos de les capes lineals (`ssm_beta_alpha`, `attn_qkv_gate`) i les versions actuals de llama.cpp i LM Studio no els carreguen (`tensor 'blk.0.ssm_beta.weight' not found`). Comprovat amb el GGUF del 20k + reforç. En un Mac, feu servir la versió MLX.
 
@@ -93,27 +95,29 @@ Cobreix 11 tipus d'oració. Dataset: [xaviviro/sintaxi-catala-eval250](https://h
 | mini 10k | **69.2** | 80.5 | 84.1 | 94.4 | 93.6 | 98.4 | 100.0 | 4.0 |
 | mini 20k | **73.2** | 83.8 | 86.2 | 93.6 | 93.6 | 98.4 | 99.6 | 4.0 |
 | mini 20k + reforç | **80.8** | 87.4 | 90.1 | 97.2 | 97.2 | 99.2 | 100.0 | 3.9 |
+| mini 20k + 2 reforços | **94.4** | 97.4 | 98.0 | 99.6 | 97.2 | 99.6 | 100.0 | — |
 | professor Qwen3.8-27B | **91.2** | 95.2 | 95.5 | 98.8 | 98.0 | 99.6 | 99.6 | 881.1 |
 
 ![eval250 per grups](resultats/eval250_grups.png)
 
 Anàlisi exacta (%) per tipus d'oració:
 
-| tipus d'oració (n) | mini base (sense destil·lar) | mini 4k | mini 10k | mini 20k | mini 20k + reforç | professor Qwen3.8-27B |
-|---|---|---|---|---|---|---|
-| CD (30) | 0 | 93 | 90 | 90 | 100 | 100 |
-| CD+CI (20) | 0 | 85 | 100 | 85 | 85 | 100 |
-| pronoms febles (15) | 0 | 33 | 40 | 60 | 60 | 93 |
-| predicat nominal (25) | 0 | 84 | 80 | 96 | 88 | 88 |
-| veu passiva (20) | 0 | 100 | 95 | 85 | 95 | 95 |
-| impersonal (15) | 0 | 0 | 47 | 47 | 60 | 80 |
-| CPRED (15) | 0 | 47 | 47 | 53 | 60 | 67 |
-| CRV (15) | 0 | 0 | 7 | 7 | 80 | 73 |
-| CC (50) | 0 | 46 | 68 | 74 | 78 | 94 |
-| verbs incoatius (25) | 4 | 80 | 68 | 72 | 80 | 96 |
-| subjecte el·líptic (20) | 0 | 70 | 75 | 90 | 80 | 95 |
+| tipus d'oració (n) | mini base (sense destil·lar) | mini 4k | mini 10k | mini 20k | mini 20k + reforç | mini 20k + 2 reforços | professor Qwen3.8-27B |
+|---|---|---|---|---|---|---|---|
+| CD (30) | 0 | 93 | 90 | 90 | 100 | 93 | 100 |
+| CD+CI (20) | 0 | 85 | 100 | 85 | 85 | 100 | 100 |
+| pronoms febles (15) | 0 | 33 | 40 | 60 | 60 | 100 | 93 |
+| predicat nominal (25) | 0 | 84 | 80 | 96 | 88 | 96 | 88 |
+| veu passiva (20) | 0 | 100 | 95 | 85 | 95 | 100 | 95 |
+| impersonal (15) | 0 | 0 | 47 | 47 | 60 | 80 | 80 |
+| CPRED (15) | 0 | 47 | 47 | 53 | 60 | 80 | 67 |
+| CRV (15) | 0 | 0 | 7 | 7 | 80 | 100 | 73 |
+| CC (50) | 0 | 46 | 68 | 74 | 78 | 92 | 94 |
+| verbs incoatius (25) | 4 | 80 | 68 | 72 | 80 | 100 | 96 |
+| subjecte el·líptic (20) | 0 | 70 | 75 | 90 | 80 | 95 | 95 |
 
 Què s'hi veu (mesurat):
+- Amb dues rondes de reforç, el mini (94,4 %) supera el professor (91,2 %); vegeu l'avís de la «Tercera ronda».
 - Mateixa ordenació que a la referència manual: base 0,4 % → 4k 62 % → 10k 69 % → 20k 73 % → (20k + reforç 81 %) → professor 91 %. Els resultats de la referència de 30 (60 / 70 / 73 / 93) es mantenen amb un test 8 vegades més gran.
 - **CRV**: el mini falla gairebé sempre (0–7 %). El confon amb un CC de lloc («pensa *en el seu avi*» → CC_LLOC). El professor l'encerta en el 73 %. Al train de 20k només hi ha 8 CRV.
 - **Impersonals** (47 % al 10k i al 20k, 0 % al 4k) i **pronoms febles** (33 → 60 %) són els altres punts febles; el professor hi arriba al 80 % i al 93 %.
@@ -141,6 +145,32 @@ GGUF: [...-20k-reforc-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi
 dataset: [sintaxi-catala-destillada-20k-reforc](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc).
 Codi: `gen_frases.py --reforc 1`, `reforc.py`, `reforc_train_cell.py`, `publica_reforc.py`.
 
+### Tercera ronda: segon reforç, escrit directament (mesurat)
+
+Els 48 errors del mini 20k + reforç a l'eval250 es van agrupar per **categories d'error**: CC de quantitat i de temps confosos amb CPRED o lloc («molt», «sovint», «a les set»),
+CC de causa amb «de» («de fred»), CPRED fusionat amb el CD («la porta oberta»), impersonals amb «fer» («Fa fred»), verbs psicològics («M'agraden les maduixes», «A la Núria li encanta…»),
+CI amb «a» + persona confós amb CC de lloc, CRV, passiva en futur i predicat nominal amb «estar». Per a cada categoria es van escriure oracions noves amb la seva anàlisi, **sense el professor**:
+**459 oracions** (`reforc2/dades/*.txt`), revisades amb el corrector Escalf i validades amb el mateix `valida()`. Cap no coincideix amb l'eval250, la referència de 30, el test ni el train,
+i les que s'assemblaven massa a una oració de l'eval250 es van reescriure. Es va tornar a entrenar des del model base amb 20k + reforç 1 + reforç 2 (8.141 exemples), amb la mateixa configuració.
+
+| | eval250 | CC | pronoms febles | impersonals | CPRED | CRV | referència manual (30) | test (300) |
+|---|---|---|---|---|---|---|---|---|
+| mini 20k | 73,2 | 74 | 60 | 47 | 53 | 7 | 73,3 | 92,3 |
+| mini 20k + reforç | 80,8 | 78 | 60 | 60 | 60 | 80 | 83,3 | 93,0 |
+| **mini 20k + 2 reforços** | **94,4** | **92** | **100** | **80** | **80** | **100** | **96,7** | **94,0** |
+| ídem, MLX 4 bits | 94,8 | 94 | 100 | 87 | 80 | 100 | 96,7 | 93,7 |
+| professor Qwen3.8-27B | 91,2 | 94 | 93 | 80 | 67 | 73 | 93,3 | — |
+
+- **459 exemples (un 6 % més de dades) fan guanyar 13,6 punts**: més que totes les duplicacions de dades genèriques juntes.
+- Els pronoms febles, que el primer reforç no va moure (60 %), passen al 100 %: hi faltaven exemples de verbs psicològics i de combinacions de dos pronoms.
+- També millora la referència manual (83,3 → 96,7 %), que no es va fer servir per triar les categories; el test de 300, etiquetat pel professor, gairebé no es mou (93,0 → 94,0).
+- **Avís:** les categories surten dels errors a l'eval250. Cap oració de l'eval250 no s'ha fet servir per entrenar, però l'eval250 ja no és una mesura independent per a aquest model; per això també es dona la referència de 30.
+
+Model: [Qwen3.5-0.8B-sintaxi-catala-20k-reforc2](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc2) ·
+MLX 4 bits: [...-20k-reforc2-MLX-4bit](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi-catala-20k-reforc2-MLX-4bit) ·
+dataset: [sintaxi-catala-destillada-20k-reforc2](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc2).
+Codi: `reforc2/` (dades escrites en notació compacta, `expandeix.py` per convertir-les i validar-les, notebook de Colab `reforc2_colab.ipynb`, avaluació amb MLX).
+
 ## Mides, memòria i cost
 
 ![mides i memòria](resultats/mides_memoria.png)
@@ -158,14 +188,14 @@ Codi: `gen_frases.py --reforc 1`, `reforc.py`, `reforc_train_cell.py`, `publica_
 - **Temps per oració** (lot de 30 amb vLLM, RTX PRO 6000): professor 1.712 ms (raona) · base 21 ms · mini 11 ms. Q4 amb llama.cpp, d'una en una: ~0,42 s a una L4 i ~0,15 s a una RTX PRO 6000.
 - **Cost de fer el dataset**: el professor analitza cada oració en ~0,68 s (~750 tokens de raonament + resposta, ~1.100 tokens/s). 20.512 oracions ≈ 4 h de GPU.
 
-### En un Mac (mesurat, MacBook Pro M3 Max, MLX 4 bits del 20k + reforç)
+### En un Mac (mesurat, MacBook Pro M3 Max, MLX 4 bits)
 
 | | temps per oració | primer token | velocitat |
 |---|---|---|---|
 | mlx-lm (Python) | 0,33–0,37 s | ~20 ms | ~270 tokens/s |
 | LM Studio (servidor local, motor MLX 1.14.0) | 0,37–0,43 s | ~45 ms | ~245 tokens/s |
 
-D'una en una, sense agrupar. Quantitzat a 4 bits amb MLX, l'eval250 dona **80,0 %** d'anàlisi exacta (bf16: 80,8 %) i la referència manual de 30, **83,3 %** (igual que el bf16).
+D'una en una, sense agrupar (20k + reforç; el 20k + 2 reforços dona el mateix: 0,32–0,40 s, ~266 tokens/s, 0,42 GB actius). Quantitzat a 4 bits amb MLX, el 20k + 2 reforços fa el **94,8 %** a l'eval250 (bf16: 94,4 %) i el **96,7 %** a la referència manual (igual que el bf16); el 20k + reforç, el 80,0 % (bf16: 80,8 %).
 La resta de xifres d'aquesta secció són de GPUs NVIDIA a Colab.
 
 ## Com s'ha fet
@@ -188,6 +218,7 @@ La resta de xifres d'aquesta secció són de GPUs NVIDIA a Colab.
 | `publicar_hf.py` | fitxes en català (amb gràfics i exemples) i publicació de datasets i models a Hugging Face |
 | `gguf_q4.py` | conversió a GGUF Q4_K_M, validació contra el bf16 i publicació |
 | `eval250.py` · `eval250_analisi.py` · `actualitza_cards.py` | les 250 oracions de test, les mètriques i gràfics per tipus d'oració, i l'actualització de les fitxes de HF |
+| `reforc2/` | tercera ronda: les 459 oracions del segon reforç (`dades/*.txt`), `expandeix.py`, el notebook de Colab, inferència i avaluació amb MLX (`infer_mlx.py`, `avalua.py`) i `resultats_reforc2.py` |
 | `grafics_readme.py` + `resultats/resultats.json` | les gràfiques d'aquest README, a partir de les xifres mesurades |
 
 Les dades i els models es desen a Google Drive (`MyDrive/destillacio_sintaxi`) i es reutilitzen si ja hi són; l'ampliació del dataset va per lots (`OBJECTIU_FRASES`).
@@ -197,6 +228,7 @@ Les dades i els models es desen a Google Drive (`MyDrive/destillacio_sintaxi`) i
 - La referència manual (30 oracions) i l'eval250 estan anotades a mà seguint la gramàtica escolar i **encara no s'han revisat externament**: es poden corregir a `common.py` i `eval250.py`. Amb 30 oracions, cada oració és un 3,3 %.
 - Els datasets són **sintètics**: el filtre comprova l'estructura, no la qualitat lingüística (hi queden castellanismes i oracions poc naturals).
 - Funcions poc representades (CRV, CC de quantitat): pocs exemples fins i tot al 20k (8 i 19).
+- Els dos reforços es van dirigir a les categories on fallava l'eval250: per als models reforçats, l'eval250 ja no és del tot independent.
 
 ## Llicència
 

@@ -1,0 +1,69 @@
+# Pronoms febles com a CD (us, ens, et, el, la, els, les)
+Us acompanyarem fins al cotxe. | el | acompanyarem | CD=Us; CC_LLOC=fins al cotxe
+Us esperem a la porta del teatre. | el | esperem | CD=Us; CC_LLOC=a la porta del teatre
+L'Andreu us saluda des del cotxe. | L'Andreu>Andreu | saluda | CD=us; CC_LLOC=des del cotxe
+Ens van convidar al casament. | el | van convidar | CD=Ens; CC_LLOC=al casament
+La Gemma ens visita cada estiu. | La Gemma>Gemma | visita | CD=ens; CC_TEMPS=cada estiu
+Et trucaré aquesta tarda. | el | trucaré | CI=Et; CC_TEMPS=aquesta tarda
+Us vam veure al concert. | el | vam veure | CD=Us; CC_LLOC=al concert
+La policia els va aturar a la frontera. | La policia>policia | va aturar | CD=els; CC_LLOC=a la frontera
+Les recollirem a les cinc. | el | recollirem | CD=Les; CC_TEMPS=a les cinc
+El vaig trobar al mercat. | el | vaig trobar | CD=El; CC_LLOC=al mercat
+La Mercè la va portar al metge. | La Mercè>Mercè | va portar | CD=la; CC_LLOC=al metge
+Us necessitem aquí demà. | el | necessitem | CD=Us; CC_LLOC=aquí; CC_TEMPS=demà
+Els avis ens esperen al menjador. | Els avis>avis | esperen | CD=ens; CC_LLOC=al menjador
+T'acompanyo a casa. | el | acompanyo | CD=T'; CC_LLOC=a casa
+M'ha despertat el soroll. | el soroll>soroll | ha despertat | CD=M'
+# Pronoms febles com a CI (li, els, us, ens, em)
+Li escric una carta cada mes. | el | escric | CI=Li; CD=una carta; CC_TEMPS=cada mes
+La Lídia li truca cada nit. | La Lídia>Lídia | truca | CI=li; CC_TEMPS=cada nit
+En Roger els escriu sovint. | En Roger>Roger | escriu | CI=els; CC_TEMPS=sovint
+Els vaig enviar un missatge ahir. | el | vaig enviar | CI=Els; CD=un missatge; CC_TEMPS=ahir
+Us portarem el sopar a les nou. | el | portarem | CI=Us; CD=el sopar; CC_TEMPS=a les nou
+Ens van regalar un rellotge. | el | van regalar | CI=Ens; CD=un rellotge
+L'avi els explica històries de la guerra. | L'avi>avi | explica | CI=els; CD=històries de la guerra
+Li he deixat les claus. | el | he deixat | CI=Li; CD=les claus
+La mestra ens va posar molts deures. | La mestra>mestra | va posar | CI=ens; CD=molts deures
+Em pots passar la sal? | el | pots passar | CI=Em; CD=la sal
+Li somriu cada matí. | el | somriu | CI=Li; CC_TEMPS=cada matí
+El metge us receptarà unes pastilles. | El metge>metge | receptarà | CI=us; CD=unes pastilles
+# Combinacions de dos pronoms (els ho, li ho, us ho, n', hi)
+Els ho direm després de sopar. | el | direm | CI=Els; CD=ho; CC_TEMPS=després de sopar
+Us ho explicaré a la reunió. | el | explicaré | CI=Us; CD=ho; CC_LLOC=a la reunió
+Ens ho van dir ahir. | el | van dir | CI=Ens; CD=ho; CC_TEMPS=ahir
+La Marta els ho ha contat. | La Marta>Marta | ha contat | CI=els; CD=ho
+T'ho porto a la tarda. | el | porto | CI=T'; CD=ho; CC_TEMPS=a la tarda
+M'ho van explicar a classe. | el | van explicar | CI=M'; CD=ho; CC_LLOC=a classe
+Ho sé. | el | sé | CD=Ho
+Ho farem dissabte. | el | farem | CD=Ho; CC_TEMPS=dissabte
+En vull dues. | el | vull | CD=En; CD=dues
+En Lluc en compra tres cada setmana. | En Lluc>Lluc | compra | CD=en; CD=tres; CC_TEMPS=cada setmana
+N'he menjat massa. | el | he menjat | CD=N'; CC_QUANTITAT=massa
+Hi anirem a l'agost. | el | anirem | CC_LLOC=Hi; CC_TEMPS=a l'agost
+La Fina hi viu des de petita. | La Fina>Fina | viu | CC_LLOC=hi; CC_TEMPS=des de petita
+# Verbs psicològics (agradar, encantar, interessar, fer mal, molestar, preocupar): subjecte darrere del verb, CI feble
+M'agrada la xocolata negra. | la xocolata negra>xocolata | agrada | CI=M'
+T'agraden les pel·lícules de por? | les pel·lícules de por>pel·lícules | agraden | CI=T'
+Li encanten els gats. | els gats>gats | encanten | CI=Li
+Ens interessa molt la teva proposta. | la teva proposta>proposta | interessa | CI=Ens; CC_QUANTITAT=molt
+Em dol el genoll. | el genoll>genoll | dol | CI=Em
+Us molesta el fum? | el fum>fum | molesta | CI=Us
+Li preocupen les notes del seu fill. | les notes del seu fill>notes | preocupen | CI=Li
+Els agrada el futbol. | el futbol>futbol | agrada | CI=Els
+Ens convé un descans. | un descans>descans | convé | CI=Ens
+M'encanta aquesta cançó. | aquesta cançó>cançó | encanta | CI=M'
+Ens agraden les festes de barri. | les festes de barri>festes | agraden | CI=Ens
+Li costa la gramàtica. | la gramàtica>gramàtica | costa | CI=Li
+Em sobra temps. | temps>temps | sobra | CI=Em
+Us falta una cadira. | una cadira>cadira | falta | CI=Us
+# Reduplicació del CI: «A la Núria li...»: dos CI
+A en Jordi li agrada el teatre. | el teatre>teatre | agrada | CI=A en Jordi; CI=li
+Als nens els encanten els contes. | els contes>contes | encanten | CI=Als nens; CI=els
+A la Paula li dol l'esquena. | l'esquena>esquena | dol | CI=A la Paula; CI=li
+A mi m'agrada el mar. | el mar>mar | agrada | CI=A mi; CI=m'
+A l'avi li agraden les sardanes. | les sardanes>sardanes | agraden | CI=A l'avi; CI=li
+Als veïns els molesta el soroll. | el soroll>soroll | molesta | CI=Als veïns; CI=els
+A la directora li preocupa el pressupost. | el pressupost>pressupost | preocupa | CI=A la directora; CI=li
+A nosaltres ens interessa la història. | la història>història | interessa | CI=A nosaltres; CI=ens
+A en Pol li sobren diners. | diners>diners | sobren | CI=A en Pol; CI=li
+A la Mar li encanta ballar. | ballar>ballar | encanta | CI=A la Mar; CI=li

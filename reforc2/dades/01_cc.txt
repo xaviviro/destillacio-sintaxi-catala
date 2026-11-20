@@ -1,0 +1,109 @@
+# CC de quantitat amb verbs intransitius (molt, poc, massa, bastant, gaire)
+La Carla dorm molt els caps de setmana. | La Carla>Carla | dorm | CC_QUANTITAT=molt; CC_TEMPS=els caps de setmana
+Els nadons ploren molt a la nit. | Els nadons>nadons | ploren | CC_QUANTITAT=molt; CC_TEMPS=a la nit
+El meu avi camina poc. | El meu avi>avi | camina | CC_QUANTITAT=poc
+Parles massa a classe. | el | Parles | CC_QUANTITAT=massa; CC_LLOC=a classe
+Aquest rellotge s'endarrereix bastant. | Aquest rellotge>rellotge | s'endarrereix | CC_QUANTITAT=bastant
+Els turistes gasten molt a l'estiu. | Els turistes>turistes | gasten | CC_QUANTITAT=molt; CC_TEMPS=a l'estiu
+L'Arnau menja poc al migdia. | L'Arnau>Arnau | menja | CC_QUANTITAT=poc; CC_TEMPS=al migdia
+Hem caminat molt avui. | el | Hem caminat | CC_QUANTITAT=molt; CC_TEMPS=avui
+La nena creix molt de pressa. | La nena>nena | creix | CC_MANERA=molt de pressa
+El riu ha baixat poc aquest any. | El riu>riu | ha baixat | CC_QUANTITAT=poc; CC_TEMPS=aquest any
+Els veïns criden massa. | Els veïns>veïns | criden | CC_QUANTITAT=massa
+Cantaven molt a la coral. | el | Cantaven | CC_QUANTITAT=molt; CC_LLOC=a la coral
+La Júlia llegeix molt a la biblioteca. | La Júlia>Júlia | llegeix | CC_QUANTITAT=molt; CC_LLOC=a la biblioteca
+Aquest cotxe consumeix massa. | Aquest cotxe>cotxe | consumeix | CC_QUANTITAT=massa
+Estudiaré bastant aquest trimestre. | el | Estudiaré | CC_QUANTITAT=bastant; CC_TEMPS=aquest trimestre
+El forner treballa molt de matinada. | El forner>forner | treballa | CC_QUANTITAT=molt; CC_TEMPS=de matinada
+Els alumnes riuen molt amb el professor de música. | Els alumnes>alumnes | riuen | CC_QUANTITAT=molt; CC_COMPANYIA=amb el professor de música
+La Martina viatja poc. | La Martina>Martina | viatja | CC_QUANTITAT=poc
+Ha nevat molt a la Cerdanya. | imp | Ha nevat | CC_QUANTITAT=molt; CC_LLOC=a la Cerdanya
+Plou poc a l'interior. | imp | Plou | CC_QUANTITAT=poc; CC_LLOC=a l'interior
+Els gats dormen molt. | Els gats>gats | dormen | CC_QUANTITAT=molt
+Corres massa amb la bicicleta. | el | Corres | CC_QUANTITAT=massa; CC_INSTRUMENT=amb la bicicleta
+Ens hem divertit molt a la festa major. | el | Ens hem divertit | CC_QUANTITAT=molt; CC_LLOC=a la festa major
+El públic va aplaudir molt. | El públic>públic | va aplaudir | CC_QUANTITAT=molt
+La meva germana sua molt al gimnàs. | La meva germana>germana | sua | CC_QUANTITAT=molt; CC_LLOC=al gimnàs
+# CC de temps: adverbis (sovint, aviat, tard, mai, sempre, ara, encara) i hores
+La Clara arriba sempre tard. | La Clara>Clara | arriba | CC_TEMPS=sempre; CC_TEMPS=tard
+Sortirem aviat de casa. | el | Sortirem | CC_TEMPS=aviat; CC_LLOC=de casa
+Els meus cosins venen sovint al poble. | Els meus cosins>cosins | venen | CC_TEMPS=sovint; CC_LLOC=al poble
+Tornaràs tard? | el | Tornaràs | CC_TEMPS=tard
+L'autobús passa sovint per aquí. | L'autobús>autobús | passa | CC_TEMPS=sovint; CC_LLOC=per aquí
+En Pau es lleva aviat. | En Pau>Pau | es lleva | CC_TEMPS=aviat
+Dinarem a les dues. | el | Dinarem | CC_TEMPS=a les dues
+El tren surt a les vuit. | El tren>tren | surt | CC_TEMPS=a les vuit
+Ens trobarem a les cinc a la plaça. | el | Ens trobarem | CC_TEMPS=a les cinc; CC_LLOC=a la plaça
+La botiga obre a les deu. | La botiga>botiga | obre | CC_TEMPS=a les deu
+Esmorzo a les set cada dia. | el | Esmorzo | CC_TEMPS=a les set; CC_TEMPS=cada dia
+El concert començarà a les nou del vespre. | El concert>concert | començarà | CC_TEMPS=a les nou del vespre
+Vam arribar a la una. | el | Vam arribar | CC_TEMPS=a la una
+La reunió acaba a les dotze. | La reunió>reunió | acaba | CC_TEMPS=a les dotze
+Sopàvem sempre a les vuit. | el | Sopàvem | CC_TEMPS=sempre; CC_TEMPS=a les vuit
+L'àvia telefona sovint. | L'àvia>àvia | telefona | CC_TEMPS=sovint
+Marxarem aviat. | el | Marxarem | CC_TEMPS=aviat
+El sol es pon tard a l'estiu. | El sol>sol | es pon | CC_TEMPS=tard; CC_TEMPS=a l'estiu
+Ara treballo a Girona. | el | treballo | CC_TEMPS=Ara; CC_LLOC=a Girona
+Encara dormen els nens. | els nens>nens | dormen | CC_TEMPS=Encara
+La Laura nedava sovint al llac. | La Laura>Laura | nedava | CC_TEMPS=sovint; CC_LLOC=al llac
+Els pagesos s'aixequen d'hora. | Els pagesos>pagesos | s'aixequen | CC_TEMPS=d'hora
+Juguem a les sis al parc. | el | Juguem | CC_TEMPS=a les sis; CC_LLOC=al parc
+El museu tanca a les set els dilluns. | El museu>museu | tanca | CC_TEMPS=a les set; CC_TEMPS=els dilluns
+# CC de causa amb «de» / «per» (de fred, de gana, de por, per la pluja)
+El gos tremolava de por. | El gos>gos | tremolava | CC_CAUSA=de por
+Els nens ploraven de gana. | Els nens>nens | ploraven | CC_CAUSA=de gana
+La Marta va riure de nervis. | La Marta>Marta | va riure | CC_CAUSA=de nervis
+Em moro de son. | el | Em moro | CC_CAUSA=de son
+L'avi va saltar d'alegria. | L'avi>avi | va saltar | CC_CAUSA=d'alegria
+Les flors es van morir de set. | Les flors>flors | es van morir | CC_CAUSA=de set
+Els jugadors van cridar d'emoció. | Els jugadors>jugadors | van cridar | CC_CAUSA=d'emoció
+Tremolo de fred al carrer. | el | Tremolo | CC_CAUSA=de fred; CC_LLOC=al carrer
+El partit es va suspendre per la pluja. | El partit>partit | es va suspendre | CC_CAUSA=per la pluja
+L'escola va tancar per la nevada. | L'escola>escola | va tancar | CC_CAUSA=per la nevada
+La Neus es va posar vermella de vergonya. | La Neus>Neus | es va posar | CPRED=vermella; CC_CAUSA=de vergonya
+El públic badallava d'avorriment. | El públic>públic | badallava | CC_CAUSA=d'avorriment
+Ens vam quedar a casa pel mal temps. | el | Ens vam quedar | CC_LLOC=a casa; CC_CAUSA=pel mal temps
+El vol es va endarrerir per la boira. | El vol>vol | es va endarrerir | CC_CAUSA=per la boira
+Va plorar de ràbia. | el | Va plorar | CC_CAUSA=de ràbia
+Els excursionistes suaven de calor. | Els excursionistes>excursionistes | suaven | CC_CAUSA=de calor
+# CC d'instrument amb «amb»
+Escriu amb el llapis vermell. | el | Escriu | CC_INSTRUMENT=amb el llapis vermell
+La Paula talla el pa amb un ganivet. | La Paula>Paula | talla | CD=el pa; CC_INSTRUMENT=amb un ganivet
+Obriré la porta amb la clau petita. | el | Obriré | CD=la porta; CC_INSTRUMENT=amb la clau petita
+La fustera poleix la taula amb paper de vidre. | La fustera>fustera | poleix | CD=la taula; CC_INSTRUMENT=amb paper de vidre
+Mirem les estrelles amb el telescopi. | el | Mirem | CD=les estrelles; CC_INSTRUMENT=amb el telescopi
+L'Oriol escolta la ràdio amb uns auriculars vells. | L'Oriol>Oriol | escolta | CD=la ràdio; CC_INSTRUMENT=amb uns auriculars vells
+Menjàvem la sopa amb cullera. | el | Menjàvem | CD=la sopa; CC_INSTRUMENT=amb cullera
+El metge escolta el cor amb el fonendoscopi. | El metge>metge | escolta | CD=el cor; CC_INSTRUMENT=amb el fonendoscopi
+Van tallar l'arbre amb una serra. | el | Van tallar | CD=l'arbre; CC_INSTRUMENT=amb una serra
+La Rita fa fotos amb el mòbil. | La Rita>Rita | fa | CD=fotos; CC_INSTRUMENT=amb el mòbil
+Netejo els vidres amb un drap. | el | Netejo | CD=els vidres; CC_INSTRUMENT=amb un drap
+El cuiner remena la salsa amb una cullera de fusta. | El cuiner>cuiner | remena | CD=la salsa; CC_INSTRUMENT=amb una cullera de fusta
+# CC de companyia amb «amb»
+Passejo amb el gos cada tarda. | el | Passejo | CC_COMPANYIA=amb el gos; CC_TEMPS=cada tarda
+La Berta balla amb el seu cosí. | La Berta>Berta | balla | CC_COMPANYIA=amb el seu cosí
+Hem dinat amb els avis. | el | Hem dinat | CC_COMPANYIA=amb els avis
+Els nens juguen amb els veïns al pati. | Els nens>nens | juguen | CC_COMPANYIA=amb els veïns; CC_LLOC=al pati
+# CC de lloc amb «per», «de», «des de»
+Els ciclistes passaran per tot el poble. | Els ciclistes>ciclistes | passaran | CC_LLOC=per tot el poble
+La notícia es va escampar per tota la ciutat. | La notícia>notícia | es va escampar | CC_LLOC=per tota la ciutat
+Passegem pel port. | el | Passegem | CC_LLOC=pel port
+El fum surt de la xemeneia. | El fum>fum | surt | CC_LLOC=de la xemeneia
+Les monitores van baixar del refugi. | Les monitores>monitores | van baixar | CC_LLOC=del refugi
+Vinc de la piscina. | el | Vinc | CC_LLOC=de la piscina
+La cigonya vola per sobre del campanar. | La cigonya>cigonya | vola | CC_LLOC=per sobre del campanar
+L'empresa ven mobles per tot Europa. | L'empresa>empresa | ven | CD=mobles; CC_LLOC=per tot Europa
+Ens mirava des de la finestra. | el | mirava | CD=Ens; CC_LLOC=des de la finestra
+L'aigua baixa de la muntanya. | L'aigua>aigua | baixa | CC_LLOC=de la muntanya
+Els turistes es passegen pel mercat. | Els turistes>turistes | es passegen | CC_LLOC=pel mercat
+El carter reparteix les cartes pel barri. | El carter>carter | reparteix | CD=les cartes; CC_LLOC=pel barri
+# Dos CC seguits: no s'han d'ajuntar
+Els pescadors tornen al port de nit. | Els pescadors>pescadors | tornen | CC_LLOC=al port; CC_TEMPS=de nit
+Arribarem a Lleida a la tarda. | el | Arribarem | CC_LLOC=a Lleida; CC_TEMPS=a la tarda
+El pastor puja a la muntanya a l'estiu. | El pastor>pastor | puja | CC_LLOC=a la muntanya; CC_TEMPS=a l'estiu
+Els nens van al col·legi amb l'autobús. | Els nens>nens | van | CC_LLOC=al col·legi; CC_INSTRUMENT=amb l'autobús
+Vam anar a la platja amb els amics. | el | Vam anar | CC_LLOC=a la platja; CC_COMPANYIA=amb els amics
+La família se'n va al poble per Nadal. | La família>família | se'n va | CC_LLOC=al poble; CC_TEMPS=per Nadal
+L'Enric entra a l'oficina a les nou. | L'Enric>Enric | entra | CC_LLOC=a l'oficina; CC_TEMPS=a les nou
+Els ocells marxen al sud a la tardor. | Els ocells>ocells | marxen | CC_LLOC=al sud; CC_TEMPS=a la tardor
+Treballen a Reus des del gener. | el | Treballen | CC_LLOC=a Reus; CC_TEMPS=des del gener

@@ -1,0 +1,43 @@
+# Complement de règim verbal: preposició exigida pel verb (no és CC ni CD)
+El poble disposa d'una piscina municipal. | El poble>poble | disposa | CRV=d'una piscina municipal
+Disposem de poc temps. | el | Disposem | CRV=de poc temps
+La Bruna somia amb un viatge al Japó. | La Bruna>Bruna | somia | CRV=amb un viatge al Japó
+Somiava amb el mar. | el | Somiava | CRV=amb el mar
+Els veïns han optat per una solució pactada. | Els veïns>veïns | han optat | CRV=per una solució pactada
+Optaré per la carrera de medicina. | el | Optaré | CRV=per la carrera de medicina
+L'èxit depèn de l'esforç. | L'èxit>èxit | depèn | CRV=de l'esforç
+Confio en els meus companys. | el | Confio | CRV=en els meus companys
+La Teresa pensa sovint en la seva àvia. | La Teresa>Teresa | pensa | CC_TEMPS=sovint; CRV=en la seva àvia
+Ens hem acostumat al soroll. | el | Ens hem acostumat | CRV=al soroll
+El nen s'ha oblidat de la motxilla. | El nen>nen | s'ha oblidat | CRV=de la motxilla
+Insisteixo en la importància del descans. | el | Insisteixo | CRV=en la importància del descans
+L'equip aspira al títol. | L'equip>equip | aspira | CRV=al títol
+La recepta consisteix en tres passos. | La recepta>recepta | consisteix | CRV=en tres passos
+Em refio de la teva opinió. | el | Em refio | CRV=de la teva opinió
+Els pares es preocupen pels fills. | Els pares>pares | es preocupen | CRV=pels fills
+Hem renunciat a les vacances. | el | Hem renunciat | CRV=a les vacances
+La Sara es dedica a la música. | La Sara>Sara | es dedica | CRV=a la música
+El jurat es va fixar en els detalls. | El jurat>jurat | es va fixar | CRV=en els detalls
+Penso en tu. | el | Penso | CRV=en tu
+Parlarem de política a la reunió. | el | Parlarem | CRV=de política; CC_LLOC=a la reunió
+El professor es queixa del soroll. | El professor>professor | es queixa | CRV=del soroll
+Els alumnes s'adonen de l'error. | Els alumnes>alumnes | s'adonen | CRV=de l'error
+La Rut s'ha enamorat d'un pintor. | La Rut>Rut | s'ha enamorat | CRV=d'un pintor
+Creiem en la justícia. | el | Creiem | CRV=en la justícia
+Ens vam riure de l'acudit. | el | Ens vam riure | CRV=de l'acudit
+La ciutat compta amb un bon servei de bus. | La ciutat>ciutat | compta | CRV=amb un bon servei de bus
+L'avi es recorda de la guerra. | L'avi>avi | es recorda | CRV=de la guerra
+Els treballadors lluiten pels seus drets. | Els treballadors>treballadors | lluiten | CRV=pels seus drets
+Em penedeixo de les meves paraules. | el | Em penedeixo | CRV=de les meves paraules
+El club s'ha oposat al canvi d'estadi. | El club>club | s'ha oposat | CRV=al canvi d'estadi
+Tracta de la història del port. | el | Tracta | CRV=de la història del port
+La Mariona s'interessa per l'astronomia. | La Mariona>Mariona | s'interessa | CRV=per l'astronomia
+Hem pensat en una sortida al bosc. | el | Hem pensat | CRV=en una sortida al bosc
+L'empresa s'encarrega de la neteja. | L'empresa>empresa | s'encarrega | CRV=de la neteja
+# Contrast: «amb» de companyia o instrument, «de» de lloc, «per» de causa
+Somio amb el meu germà cada nit. | el | Somio | CRV=amb el meu germà; CC_TEMPS=cada nit
+Sopo amb el meu germà cada nit. | el | Sopo | CC_COMPANYIA=amb el meu germà; CC_TEMPS=cada nit
+Depenem del transport públic. | el | Depenem | CRV=del transport públic
+Venim de la platja. | el | Venim | CC_LLOC=de la platja
+Va optar per la sinceritat. | el | Va optar | CRV=per la sinceritat
+Va plorar per la seva gossa. | el | Va plorar | CC_CAUSA=per la seva gossa

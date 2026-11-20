@@ -1,0 +1,50 @@
+# Barreja: tipus de CC difícils en oracions amb CD o CI
+L'Eva visita sovint els seus pares. | L'Eva>Eva | visita | CC_TEMPS=sovint; CD=els seus pares
+Netejarem la cuina aviat. | el | Netejarem | CD=la cuina; CC_TEMPS=aviat
+El forner cou el pa a les quatre. | El forner>forner | cou | CD=el pa; CC_TEMPS=a les quatre
+Mirem massa la televisió. | el | Mirem | CC_QUANTITAT=massa; CD=la televisió
+La Judit estima molt el seu gos. | La Judit>Judit | estima | CC_QUANTITAT=molt; CD=el seu gos
+Vaig llegir molt l'estiu passat. | el | Vaig llegir | CC_QUANTITAT=molt; CC_TEMPS=l'estiu passat
+Els nens beuen poca aigua. | Els nens>nens | beuen | CD=poca aigua
+Escric poc als meus amics. | el | Escric | CC_QUANTITAT=poc; CI=als meus amics
+El metge treballa molt els caps de setmana. | El metge>metge | treballa | CC_QUANTITAT=molt; CC_TEMPS=els caps de setmana
+Els joves ballen molt a la festa. | Els joves>joves | ballen | CC_QUANTITAT=molt; CC_LLOC=a la festa
+Esperarem la Laia a les sis. | el | Esperarem | CD=la Laia; CC_TEMPS=a les sis
+La mare truca a l'àvia sovint. | La mare>mare | truca | CI=a l'àvia; CC_TEMPS=sovint
+Collim les olives a la tardor. | el | Collim | CD=les olives; CC_TEMPS=a la tardor
+Va tancar la porta de cop. | el | Va tancar | CD=la porta; CC_MANERA=de cop
+El cavall va saltar la tanca d'un bot. | El cavall>cavall | va saltar | CD=la tanca; CC_MANERA=d'un bot
+La Carme va trencar el got per descuit. | La Carme>Carme | va trencar | CD=el got; CC_CAUSA=per descuit
+Plorava d'emoció a l'estrena. | el | Plorava | CC_CAUSA=d'emoció; CC_LLOC=a l'estrena
+Els avis riuen de felicitat. | Els avis>avis | riuen | CC_CAUSA=de felicitat
+El públic va callar de sorpresa. | El públic>públic | va callar | CC_CAUSA=de sorpresa
+Van ajornar el sopar per la vaga. | el | Van ajornar | CD=el sopar; CC_CAUSA=per la vaga
+Estudio a la biblioteca per l'examen. | el | Estudio | CC_LLOC=a la biblioteca; CC_FINALITAT=per l'examen
+La Jordina estalvia per a un viatge. | La Jordina>Jordina | estalvia | CC_FINALITAT=per a un viatge
+Hem vingut per veure l'exposició. | el | Hem vingut | CC_FINALITAT=per veure l'exposició
+L'Oriol es pentina amb una pinta. | L'Oriol>Oriol | es pentina | CC_INSTRUMENT=amb una pinta
+Escombrem el pati amb una escombra nova. | el | Escombrem | CD=el pati; CC_INSTRUMENT=amb una escombra nova
+Toca la guitarra amb molta traça. | el | Toca | CD=la guitarra; CC_MANERA=amb molta traça
+La Lola parla amb el director. | La Lola>Lola | parla | CC_COMPANYIA=amb el director
+Viatjo amb la meva parella. | el | Viatjo | CC_COMPANYIA=amb la meva parella
+# Pronoms febles en oracions més llargues
+La meva cosina ens espera a l'aeroport de Girona. | La meva cosina>cosina | espera | CD=ens; CC_LLOC=a l'aeroport de Girona
+Us presentaré el nou director dilluns. | el | presentaré | CI=Us; CD=el nou director; CC_TEMPS=dilluns
+Els tornaré els llibres a la biblioteca. | el | tornaré | CI=Els; CD=els llibres; CC_LLOC=a la biblioteca
+La veïna li cuida el gat a l'agost. | La veïna>veïna | cuida | CI=li; CD=el gat; CC_TEMPS=a l'agost
+Us agrairem la resposta. | el | agrairem | CI=Us; CD=la resposta
+Les vam comprar al mercat de Sant Antoni. | el | vam comprar | CD=Les; CC_LLOC=al mercat de Sant Antoni
+Els el vam regalar per Reis. | el | vam regalar | CI=Els; CD=el; CC_TEMPS=per Reis
+Li ho vaig dir clarament. | el | vaig dir | CI=Li; CD=ho; CC_MANERA=clarament
+Ens les van portar a casa. | el | van portar | CI=Ens; CD=les; CC_LLOC=a casa
+M'agraden molt els dies de pluja. | els dies de pluja>dies | agraden | CI=M'; CC_QUANTITAT=molt
+Als alumnes els interessa la ciència. | la ciència>ciència | interessa | CI=Als alumnes; CI=els
+A la Laia li encanten les cireres. | les cireres>cireres | encanten | CI=A la Laia; CI=li
+Ens agrada passejar per la platja. | passejar per la platja>passejar | agrada | CI=Ens
+# CPRED amb CD a l'inici o amb subjecte el·líptic
+Van trobar el nen adormit. | el | Van trobar | CD=el nen; CPRED=adormit
+Vaig deixar el cotxe aparcat al carrer. | el | Vaig deixar | CD=el cotxe; CPRED=aparcat; CC_LLOC=al carrer
+Tenen la casa molt neta. | el | Tenen | CD=la casa; CPRED=molt neta
+Van escollir la Bet portaveu. | el | Van escollir | CD=la Bet; CPRED=portaveu
+Considerem la qüestió resolta. | el | Considerem | CD=la qüestió; CPRED=resolta
+Vam rebre la notícia contents. | el | Vam rebre | CD=la notícia; CPRED=contents

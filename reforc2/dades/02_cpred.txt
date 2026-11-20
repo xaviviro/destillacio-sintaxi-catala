@@ -1,0 +1,58 @@
+# CPRED amb CD: elegir/nomenar/considerar/trobar/deixar/veure + CD + predicatiu (no s'ajunten)
+L'assemblea va nomenar l'Anna secretària. | L'assemblea>assemblea | va nomenar | CD=l'Anna; CPRED=secretària
+Els socis van elegir en Martí president del club. | Els socis>socis | van elegir | CD=en Martí; CPRED=president del club
+El jurat va declarar la novel·la guanyadora. | El jurat>jurat | va declarar | CD=la novel·la; CPRED=guanyadora
+Consideren el nou alcalde massa jove. | el | Consideren | CD=el nou alcalde; CPRED=massa jove
+Trobo aquesta cadira incòmoda. | el | Trobo | CD=aquesta cadira; CPRED=incòmoda
+La Sílvia troba el pa massa sec. | La Sílvia>Sílvia | troba | CD=el pa; CPRED=massa sec
+Vam trobar la nevera buida. | el | Vam trobar | CD=la nevera; CPRED=buida
+El lladre va deixar la caixa oberta. | El lladre>lladre | va deixar | CD=la caixa; CPRED=oberta
+Deixa la finestra tancada. | el | Deixa | CD=la finestra; CPRED=tancada
+Els nens van deixar l'habitació desendreçada. | Els nens>nens | van deixar | CD=l'habitació; CPRED=desendreçada
+Veig la teva germana molt contenta. | el | Veig | CD=la teva germana; CPRED=molt contenta
+La mestra veu els alumnes cansats. | La mestra>mestra | veu | CD=els alumnes; CPRED=cansats
+Prefereixo el cafè calent. | el | Prefereixo | CD=el cafè; CPRED=calent
+En Biel pren la llet freda. | En Biel>Biel | pren | CD=la llet; CPRED=freda
+Vaig comprar la fruita madura. | el | Vaig comprar | CD=la fruita; CPRED=madura
+El cuiner serveix la carn poc feta. | El cuiner>cuiner | serveix | CD=la carn; CPRED=poc feta
+L'equip va nomenar la Laia capitana. | L'equip>equip | va nomenar | CD=la Laia; CPRED=capitana
+Tothom considera aquest llibre imprescindible. | Tothom>Tothom | considera | CD=aquest llibre; CPRED=imprescindible
+La crítica va trobar l'obra avorrida. | La crítica>crítica | va trobar | CD=l'obra; CPRED=avorrida
+Hem pintat la porta verda. | el | Hem pintat | CD=la porta; CPRED=verda
+El vent va deixar els carrers bruts. | El vent>vent | va deixar | CD=els carrers; CPRED=bruts
+Van declarar el poble zona protegida. | el | Van declarar | CD=el poble; CPRED=zona protegida
+La directora va anomenar en Pere responsable del projecte. | La directora>directora | va anomenar | CD=en Pere; CPRED=responsable del projecte
+Trobem la proposta raonable. | el | Trobem | CD=la proposta; CPRED=raonable
+El metge va trobar el pacient millor. | El metge>metge | va trobar | CD=el pacient; CPRED=millor
+Tinc les mans gelades. | el | Tinc | CD=les mans; CPRED=gelades
+La Roser porta els cabells curts. | La Roser>Roser | porta | CD=els cabells; CPRED=curts
+Mengen la verdura crua. | el | Mengen | CD=la verdura; CPRED=crua
+L'àrbitre va considerar el gol vàlid. | L'àrbitre>àrbitre | va considerar | CD=el gol; CPRED=vàlid
+Vam veure el castell il·luminat. | el | Vam veure | CD=el castell; CPRED=il·luminat
+# CD pronominal + CPRED
+La trobo molt canviada. | el | trobo | CD=La; CPRED=molt canviada
+Els van nomenar delegats. | el | van nomenar | CD=Els; CPRED=delegats
+Et veig preocupat. | el | veig | CD=Et; CPRED=preocupat
+La vam deixar sola. | el | vam deixar | CD=La; CPRED=sola
+El considero un bon amic. | el | considero | CD=El; CPRED=un bon amic
+# CPRED sense CD, amb verbs de moviment o d'estat (no és CD ni CC de manera)
+Els excursionistes van arribar esgotats al refugi. | Els excursionistes>excursionistes | van arribar | CPRED=esgotats; CC_LLOC=al refugi
+La Txell va tornar contenta de l'escola. | La Txell>Txell | va tornar | CPRED=contenta; CC_LLOC=de l'escola
+El nen dorm tranquil. | El nen>nen | dorm | CPRED=tranquil
+Els jugadors van sortir decebuts del camp. | Els jugadors>jugadors | van sortir | CPRED=decebuts; CC_LLOC=del camp
+Caminàvem descalços per la sorra. | el | Caminàvem | CPRED=descalços; CC_LLOC=per la sorra
+L'àvia viu sola en un pis petit. | L'àvia>àvia | viu | CPRED=sola; CC_LLOC=en un pis petit
+Van entrar molls a casa. | el | Van entrar | CPRED=molls; CC_LLOC=a casa
+La Gisela va marxar enfadada. | La Gisela>Gisela | va marxar | CPRED=enfadada
+Els soldats tornaven ferits del front. | Els soldats>soldats | tornaven | CPRED=ferits; CC_LLOC=del front
+El gat jeu estirat al sofà. | El gat>gat | jeu | CPRED=estirat; CC_LLOC=al sofà
+Arribaré cansat a la reunió. | el | Arribaré | CPRED=cansat; CC_LLOC=a la reunió
+Els nens escoltaven atents. | Els nens>nens | escoltaven | CPRED=atents
+La Queralt va baixar descalça per l'escala. | La Queralt>Queralt | va baixar | CPRED=descalça; CC_LLOC=per l'escala
+El ciclista va arribar primer a la meta. | El ciclista>ciclista | va arribar | CPRED=primer; CC_LLOC=a la meta
+Els convidats van marxar satisfets. | Els convidats>convidats | van marxar | CPRED=satisfets
+La sopa ha quedat salada. | La sopa>sopa | ha quedat | CPRED=salada
+L'Ester s'ha quedat sorpresa. | L'Ester>Ester | s'ha quedat | CPRED=sorpresa
+Els alumnes treballen concentrats a l'aula. | Els alumnes>alumnes | treballen | CPRED=concentrats; CC_LLOC=a l'aula
+Viatjava sol pel món. | el | Viatjava | CPRED=sol; CC_LLOC=pel món
+El nadó plorava espantat. | El nadó>nadó | plorava | CPRED=espantat
