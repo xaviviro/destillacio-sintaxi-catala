@@ -579,11 +579,12 @@
   "n_reforc2": 459,
   "n_train": 8141,
   "ref_exacte_mlx4": 96.7,
-  "eval250_exacte_mlx4": 94.8,
+  "eval250_exacte_mlx4": 94.4,
   "eval250_exacte_mlx_bf16": 94.4,
   "test_exacte_mlx4": 93.7,
   "mac_s_frase_mlx4": "0.32-0.40",
   "mac_tok_s_mlx4": 266,
-  "_nota": "bf16 avaluat amb transformers (Colab, L4) i amb mlx-lm (Mac): mateix 94,4 a l'eval250"
+  "_nota": "bf16 avaluat amb transformers (Colab, L4) i amb mlx-lm (Mac): mateix 94,4 a l'eval250",
+  "_nota_mlx4": "MLX 4 bits publicat (convertit a Colab): eval250 94,4; ref30 96,7; test300 93,7"
  }
 }

@@ -158,7 +158,7 @@ i les que s'assemblaven massa a una oració de l'eval250 es van reescriure. Es v
 | mini 20k | 73,2 | 74 | 60 | 47 | 53 | 7 | 73,3 | 92,3 |
 | mini 20k + reforç | 80,8 | 78 | 60 | 60 | 60 | 80 | 83,3 | 93,0 |
 | **mini 20k + 2 reforços** | **94,4** | **92** | **100** | **80** | **80** | **100** | **96,7** | **94,0** |
-| ídem, MLX 4 bits | 94,8 | 94 | 100 | 87 | 80 | 100 | 96,7 | 93,7 |
+| ídem, MLX 4 bits | 94,4 | 94 | 100 | 87 | 73 | 100 | 96,7 | 93,7 |
 | professor Qwen3.8-27B | 91,2 | 94 | 93 | 80 | 67 | 73 | 93,3 | — |
 
 - **459 exemples (un 6 % més de dades) fan guanyar 13,6 punts**: més que totes les duplicacions de dades genèriques juntes.
@@ -195,7 +195,7 @@ Codi: `reforc2/` (dades escrites en notació compacta, `expandeix.py` per conver
 | mlx-lm (Python) | 0,33–0,37 s | ~20 ms | ~270 tokens/s |
 | LM Studio (servidor local, motor MLX 1.14.0) | 0,37–0,43 s | ~45 ms | ~245 tokens/s |
 
-D'una en una, sense agrupar (20k + reforç; el 20k + 2 reforços dona el mateix: 0,32–0,40 s, ~266 tokens/s, 0,42 GB actius). Quantitzat a 4 bits amb MLX, el 20k + 2 reforços fa el **94,8 %** a l'eval250 (bf16: 94,4 %) i el **96,7 %** a la referència manual (igual que el bf16); el 20k + reforç, el 80,0 % (bf16: 80,8 %).
+D'una en una, sense agrupar (20k + reforç; el 20k + 2 reforços dona el mateix: 0,32–0,40 s, ~266 tokens/s, 0,42 GB actius). Quantitzat a 4 bits amb MLX, el 20k + 2 reforços fa el **94,4 %** a l'eval250 (igual que el bf16) i el **96,7 %** a la referència manual (igual que el bf16); el 20k + reforç, el 80,0 % (bf16: 80,8 %).
 La resta de xifres d'aquesta secció són de GPUs NVIDIA a Colab.
 
 ## Com s'ha fet

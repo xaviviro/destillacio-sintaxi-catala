@@ -78,7 +78,7 @@ Temperatura 0, entrada = només l'oració. Mateix codi de mètriques que la rest
 |---|---|---|---|---|---|---|---|---|
 | mini 20k + reforç (ronda anterior) | 80,8 | 87,4 | 90,1 | 97,2 | 97,2 | 100 | 83,3 | 93,0 |
 | **mini 20k + 2 reforços, bf16** | **94,4** | 97,4 | 98,0 | 99,6 | 97,2 | 100 | **96,7** | 94,0 |
-| mini 20k + 2 reforços, MLX 4 bits | 94,8 | 97,0 | 98,1 | 99,6 | 98,4 | 100 | 96,7 | 93,7 |
+| mini 20k + 2 reforços, MLX 4 bits | 94,4 | 96,7 | 97,8 | 99,6 | 98,4 | 100 | 96,7 | 93,7 |
 | professor Qwen3.8-27B (raonant) | 91,2 | 95,2 | 95,5 | 98,8 | 98,0 | 99,6 | 93,3 | — |
 
 Anàlisi exacta (%) per tipus d'oració a l'eval250:
@@ -91,7 +91,7 @@ Anàlisi exacta (%) per tipus d'oració a l'eval250:
 | predicat nominal (25) | 88 | 96 | 96 |
 | veu passiva (20) | 95 | 100 | 100 |
 | impersonal (15) | 60 | 80 | 87 |
-| CPRED (15) | 60 | 80 | 80 |
+| CPRED (15) | 60 | 80 | 73 |
 | CRV (15) | 80 | 100 | 100 |
 | CC (50) | 78 | 92 | 94 |
 | verbs incoatius (25) | 80 | 100 | 100 |
