@@ -27,7 +27,7 @@ Anàlisis sintàctiques d'oracions simples en català (JSON de gramàtica escola
 [xaviviro/sintaxi-catala-destillada-20k-reforc](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc)
 (6.649 exemples destil·lats de Qwen3.8-27B + 1.033 de reforç) més un **segon reforç de 459 oracions escrites i anotades amb un model generalista**, sense el professor.
 Projecte: [github.com/xaviviro/destillacio-sintaxi-catala](https://github.com/xaviviro/destillacio-sintaxi-catala).
-Paper: [*Mil exemples ben triats: dades dirigides contra volum en la destil·lació de l'anàlisi sintàctica del català*](https://www.researchgate.net/publication/418260632) (ResearchGate).
+Paper: [*Mil exemples ben triats: dades dirigides contra volum en la destil·lació de l'anàlisi sintàctica del català*](https://www.researchgate.net/publication/418265808) (ResearchGate, DOI [10.13140/RG.2.2.21560.51204](https://doi.org/10.13140/RG.2.2.21560.51204)).
 
 ## Com s'ha fet el segon reforç
 
@@ -109,4 +109,4 @@ La referència manual de 30 oracions, que no es va fer servir per triar res, pas
 ## Llicència i cita
 
 CC BY 4.0. Xavier Vinaixa Roselló i Maria Sevilla Paris (2026), *Mil exemples ben triats: dades dirigides contra volum
-en la destil·lació de l'anàlisi sintàctica del català*. Preprint, ResearchGate. https://www.researchgate.net/publication/418260632
+en la destil·lació de l'anàlisi sintàctica del català*. Preprint, ResearchGate. https://doi.org/10.13140/RG.2.2.21560.51204
