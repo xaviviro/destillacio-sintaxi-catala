@@ -10,7 +10,7 @@ Sortida:  {"subjecte": {"text": "L'àvia", "nucli": "àvia", "eliptic": false},
            "veu": "activa", "impersonal": false}
 ```
 
-Paper: [*Mil exemples ben triats: dades dirigides contra volum en la destil·lació de l'anàlisi sintàctica del català*](https://www.researchgate.net/publication/418260632) (ResearchGate, DOI [10.13140/RG.2.2.20931.36642](https://doi.org/10.13140/RG.2.2.20931.36642)).
+Paper: [*Mil exemples ben triats: dades dirigides contra volum en la destil·lació de l'anàlisi sintàctica del català*](https://www.researchgate.net/publication/418260632) (ResearchGate).
 
 ## En una imatge
 
@@ -246,7 +246,6 @@ Autor: Xavier Vinaixa Roselló ([xaviviro](https://huggingface.co/xaviviro)), So
   year         = {2026},
   howpublished = {Preprint, ResearchGate},
   institution  = {Sorensen AI i Universitat de Barcelona},
-  doi          = {10.13140/RG.2.2.20931.36642},
-  url          = {https://doi.org/10.13140/RG.2.2.20931.36642}
+  url          = {https://www.researchgate.net/publication/418260632}
 }
 ```
