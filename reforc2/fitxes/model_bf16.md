@@ -30,6 +30,7 @@ Sortida:  {"subjecte": {"text": "la música", "nucli": "música", "eliptic": fal
 ```
 
 Codi, notebook i explicació: **[github.com/xaviviro/destillacio-sintaxi-catala](https://github.com/xaviviro/destillacio-sintaxi-catala)**.
+Paper: [*Mil exemples ben triats: dades dirigides contra volum en la destil·lació de l'anàlisi sintàctica del català*](https://www.researchgate.net/publication/418260632) (ResearchGate, DOI [10.13140/RG.2.2.20931.36642](https://doi.org/10.13140/RG.2.2.20931.36642)).
 
 ## Ús (transformers)
 

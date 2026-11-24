@@ -10,6 +10,8 @@ Sortida:  {"subjecte": {"text": "L'àvia", "nucli": "àvia", "eliptic": false},
            "veu": "activa", "impersonal": false}
 ```
 
+Paper: [*Mil exemples ben triats: dades dirigides contra volum en la destil·lació de l'anàlisi sintàctica del català*](https://www.researchgate.net/publication/418260632) (ResearchGate, DOI [10.13140/RG.2.2.20931.36642](https://doi.org/10.13140/RG.2.2.20931.36642)).
+
 ## En una imatge
 
 ![mida vs encert](resultats/mida_vs_encert.png)
