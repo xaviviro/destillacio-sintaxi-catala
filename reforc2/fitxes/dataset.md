@@ -108,4 +108,4 @@ La referència manual de 30 oracions, que no es va fer servir per triar res, pas
 ## Llicència i cita
 
 CC BY 4.0. Xavier Vinaixa Roselló i Maria Sevilla Paris (2026), *Mil exemples ben triats: dades dirigides contra volum
-en la destil·lació de l'anàlisi sintàctica del català*.
+en la destil·lació de l'anàlisi sintàctica del català*. Preprint, ResearchGate. https://doi.org/10.13140/RG.2.2.20931.36642

@@ -106,4 +106,4 @@ Xavier Vinaixa Roselló ([xaviviro](https://huggingface.co/xaviviro)), Sorensen 
 }
 ```
 
-Informe: Vinaixa Roselló, X. i Sevilla Paris, M. (2026). *Mil exemples ben triats: dades dirigides contra volum en la destil·lació de l'anàlisi sintàctica del català*.
+Informe: Vinaixa Roselló, X. i Sevilla Paris, M. (2026). *Mil exemples ben triats: dades dirigides contra volum en la destil·lació de l'anàlisi sintàctica del català*. Preprint, ResearchGate. https://doi.org/10.13140/RG.2.2.20931.36642

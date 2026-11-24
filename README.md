@@ -238,13 +238,13 @@ Autor: Xavier Vinaixa Roselló ([xaviviro](https://huggingface.co/xaviviro)), So
 ## Citació
 
 ```bibtex
-@misc{vinaixa2026destillaciosintaxi,
-  title        = {Destil·lació d'un analitzador sintàctic del català: de Qwen3.8-27B a Qwen3.5-0.8B},
-  author       = {Vinaixa Roselló, Xavier},
+@misc{vinaixa2026milexemples,
+  title        = {Mil exemples ben triats: dades dirigides contra volum en la destil·lació de l'anàlisi sintàctica del català},
+  author       = {Vinaixa Roselló, Xavier and Sevilla Paris, Maria},
   year         = {2026},
-  institution  = {Sorensen AI, Barcelona},
-  note         = {ORCID: 0009-0005-2769-9215},
-  doi          = {Pendent},
-  url          = {Pendent}
+  howpublished = {Preprint, ResearchGate},
+  institution  = {Sorensen AI i Universitat de Barcelona},
+  doi          = {10.13140/RG.2.2.20931.36642},
+  url          = {https://doi.org/10.13140/RG.2.2.20931.36642}
 }
 ```
