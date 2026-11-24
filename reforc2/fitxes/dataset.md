@@ -25,7 +25,7 @@ configs:
 
 Anàlisis sintàctiques d'oracions simples en català (JSON de gramàtica escolar). És el dataset
 [xaviviro/sintaxi-catala-destillada-20k-reforc](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc)
-(6.649 exemples destil·lats de Qwen3.8-27B + 1.033 de reforç) més un **segon reforç de 459 oracions escrites i anotades a mà**.
+(6.649 exemples destil·lats de Qwen3.8-27B + 1.033 de reforç) més un **segon reforç de 459 oracions escrites i anotades amb un model generalista**, sense el professor.
 Projecte: [github.com/xaviviro/destillacio-sintaxi-catala](https://github.com/xaviviro/destillacio-sintaxi-catala).
 
 ## Com s'ha fet el segon reforç
@@ -35,8 +35,9 @@ Projecte: [github.com/xaviviro/destillacio-sintaxi-catala](https://github.com/xa
    («de fred»), CPRED fusionat amb el CD («la porta oberta»), impersonals amb «fer» («Fa fred»: nucli «Fa» + CD),
    verbs psicològics («M'agraden les maduixes»: subjecte postverbal, CI feble i reduplicat), CI amb «a» + persona
    confós amb CC de lloc, CRV, passiva perifràstica en futur i predicat nominal amb «estar».
-2. Per a cada categoria s'escriuen directament oracions noves amb la seva anàlisi, seguint les convencions de l'eval250.
-   No les ha generat el professor. Les ha revisat el corrector Escalf (LanguageTool, variant central).
+2. Per a cada categoria s'escriuen oracions noves amb la seva anàlisi, seguint les convencions de l'eval250.
+   No les ha generat el professor ni s'han escrit a mà: les ha redactat i anotat un model generalista, sota la direcció dels autors.
+   Les ha revisat el corrector Escalf (LanguageTool, variant central).
 3. Totes passen el mateix filtre determinista (`valida()`) que les dades destil·lades.
 4. Es descarta qualsevol oració que coincideixi amb el train, el test de 300, la referència manual de 30 o l'eval250,
    i es reescriuen les que s'assemblaven massa a una oració de l'eval250 (Jaccard de paraules ≥ 0,6).

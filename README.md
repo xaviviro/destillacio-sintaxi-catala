@@ -145,11 +145,11 @@ GGUF: [...-20k-reforc-GGUF](https://huggingface.co/xaviviro/Qwen3.5-0.8B-sintaxi
 dataset: [sintaxi-catala-destillada-20k-reforc](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc).
 Codi: `gen_frases.py --reforc 1`, `reforc.py`, `reforc_train_cell.py`, `publica_reforc.py`.
 
-### Tercera ronda: segon reforç, escrit directament (mesurat)
+### Tercera ronda: segon reforç, escrit amb un model generalista (mesurat)
 
 Els 48 errors del mini 20k + reforç a l'eval250 es van agrupar per **categories d'error**: CC de quantitat i de temps confosos amb CPRED o lloc («molt», «sovint», «a les set»),
 CC de causa amb «de» («de fred»), CPRED fusionat amb el CD («la porta oberta»), impersonals amb «fer» («Fa fred»), verbs psicològics («M'agraden les maduixes», «A la Núria li encanta…»),
-CI amb «a» + persona confós amb CC de lloc, CRV, passiva en futur i predicat nominal amb «estar». Per a cada categoria es van escriure oracions noves amb la seva anàlisi, **sense el professor**:
+CI amb «a» + persona confós amb CC de lloc, CRV, passiva en futur i predicat nominal amb «estar». Per a cada categoria es van escriure oracions noves amb la seva anàlisi, **sense el professor**, amb un model generalista i sota la direcció dels autors:
 **459 oracions** (`reforc2/dades/*.txt`), revisades amb el corrector Escalf i validades amb el mateix `valida()`. Cap no coincideix amb l'eval250, la referència de 30, el test ni el train,
 i les que s'assemblaven massa a una oració de l'eval250 es van reescriure. Es va tornar a entrenar des del model base amb 20k + reforç 1 + reforç 2 (8.141 exemples), amb la mateixa configuració.
 

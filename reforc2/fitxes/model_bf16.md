@@ -83,7 +83,7 @@ Prediccions i mètriques: `resultats/pred_eval250.jsonl`, `resultats/resultats.j
 1. **Destil·lació**: Qwen3.8-27B escriu oracions amb una estructura sintàctica demanada i les analitza a cegues; només es conserven
    les anàlisis que passen un validador determinista i coincideixen amb l'estructura demanada (20k: 6.649 exemples).
 2. **Reforç 1**: 1.033 exemples més del professor, centrats en CRV, impersonals, pronoms febles i CPRED.
-3. **Reforç 2**: 459 oracions escrites i anotades directament (sense el professor) per a les categories d'error que encara quedaven:
+3. **Reforç 2**: 459 oracions escrites i anotades amb un model generalista (sense el professor) per a les categories d'error que encara quedaven:
    CC de quantitat, temps i causa, CPRED amb CD, impersonals amb «fer», verbs psicològics, CI amb «a» + persona, CRV, passiva en futur
    i predicat nominal amb «estar». Revisades amb un corrector i validades amb el mateix filtre.
    Dataset: [xaviviro/sintaxi-catala-destillada-20k-reforc2](https://huggingface.co/datasets/xaviviro/sintaxi-catala-destillada-20k-reforc2).
